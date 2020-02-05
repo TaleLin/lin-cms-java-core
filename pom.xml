@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lin</groupId>
+    <artifactId>cms</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <modules>
+        <module>core</module>
+        <module>lin-cms-spring-boot-autoconfigure</module>
+        <module>lin-cms-spring-boot-starter</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <name>lin-cms</name>
+    <description>A simple and practical CMS implememted by java</description>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>pedro</name>
+            <email>pedrogao1996@gmail.com</email>
+        </developer>
+    </developers>
+
+</project>
