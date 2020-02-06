@@ -3,11 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lin.cms</groupId>
-    <artifactId>core</artifactId>
+    <groupId>io.github.talelin</groupId>
+    <artifactId>lin-cms-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>lin-cms-core</name>
     <description>core library for lin-cms</description>
 
