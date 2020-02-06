@@ -4,6 +4,9 @@ import com.lin.cms.autoconfigure.beans.Code;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * 请求过多
+ */
 public class RequestLimitException extends HttpException {
 
     @Getter

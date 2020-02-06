@@ -17,7 +17,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-
+/**
+ * 自定义日志记录 Appender
+ * @param <E> 时间
+ */
 public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
 
     File currentlyActiveFile;

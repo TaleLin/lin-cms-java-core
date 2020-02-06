@@ -7,6 +7,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.Field;
 
+/**
+ * 相等值校验器
+ */
 public class EqualFieldValidator implements ConstraintValidator<EqualField, Object> {
 
     private String srcField;
@@ -18,6 +21,13 @@ public class EqualFieldValidator implements ConstraintValidator<EqualField, Obje
         this.dstField = constraintAnnotation.dstField();
     }
 
+    /**
+     * 校验
+     *
+     * @param object  传入值
+     * @param context 上下文
+     * @return 是否成功
+     */
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext context) {
         Class<?> clazz = object.getClass();

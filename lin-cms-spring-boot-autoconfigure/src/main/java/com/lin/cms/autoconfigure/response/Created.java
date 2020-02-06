@@ -5,6 +5,9 @@ import com.lin.cms.autoconfigure.interfaces.BaseResponse;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * 新建响应
+ */
 public class Created implements BaseResponse {
 
     @Getter

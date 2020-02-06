@@ -4,6 +4,9 @@ import com.lin.cms.autoconfigure.beans.Code;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * 禁止操作异常
+ */
 public class ForbiddenException extends HttpException {
 
     @Getter

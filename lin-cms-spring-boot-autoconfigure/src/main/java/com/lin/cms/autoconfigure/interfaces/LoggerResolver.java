@@ -11,5 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface LoggerResolver {
 
+    /**
+     * 处理
+     *
+     * @param meta     路由信息
+     * @param logger   logger 信息
+     * @param request  请求
+     * @param response 响应
+     */
     void handle(RouteMeta meta, Logger logger, HttpServletRequest request, HttpServletResponse response);
 }

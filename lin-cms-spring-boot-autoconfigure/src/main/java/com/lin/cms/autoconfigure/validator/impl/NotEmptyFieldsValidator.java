@@ -6,6 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
+/**
+ * 非空校验器
+ */
 public class NotEmptyFieldsValidator implements ConstraintValidator<NotEmptyFields, List<String>> {
 
     private boolean allowNull;
@@ -18,6 +21,13 @@ public class NotEmptyFieldsValidator implements ConstraintValidator<NotEmptyFiel
         this.allowEmpty = constraintAnnotation.allowEmpty();
     }
 
+    /**
+     * 校验
+     *
+     * @param objects 传入值
+     * @param context 上下文
+     * @return 是否成功
+     */
     @Override
     public boolean isValid(List<String> objects, ConstraintValidatorContext context) {
         if (allowNull && objects == null) {

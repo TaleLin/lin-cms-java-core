@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 
 /**
- * 授权异常
+ * 认证异常
  */
 public class AuthorizationException extends HttpException {
 

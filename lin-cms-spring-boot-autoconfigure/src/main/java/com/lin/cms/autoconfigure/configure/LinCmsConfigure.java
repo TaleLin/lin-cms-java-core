@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
+/**
+ * lin cms 配置类
+ */
 @Configuration(proxyBeanMethods = false)
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @EnableConfigurationProperties(LinCmsProperties.class)
@@ -19,6 +22,11 @@ public class LinCmsConfigure {
     @Autowired
     private LinCmsProperties properties;
 
+    /**
+     * jwt bean
+     *
+     * @return jwt bean
+     */
     @Bean
     public DoubleJWT jwter() {
         String secret = properties.getTokenSecret();
@@ -35,12 +43,22 @@ public class LinCmsConfigure {
         return new DoubleJWT(secret, accessExpire, refreshExpire);
     }
 
+    /**
+     * AuthorizeInterceptor bean
+     *
+     * @return bean
+     */
     @Bean
     public AuthorizeInterceptor authInterceptor() {
         String[] excludeMethods = properties.getExcludeMethods();
         return new AuthorizeInterceptor(excludeMethods);
     }
 
+    /**
+     * LogInterceptor bean
+     *
+     * @return bean
+     */
     @Bean
     @ConditionalOnProperty(prefix = "lin.cms", value = "logger-enabled", havingValue = "true")
     public LogInterceptor logInterceptor() {

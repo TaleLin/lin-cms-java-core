@@ -12,11 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
+/**
+ * 行为日志拦截器
+ */
 public class LogInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private LoggerResolver loggerResolver;
 
+    /**
+     * 后置处理
+     *
+     * @param request      请求
+     * @param response     响应
+     * @param handler      处理器
+     * @param modelAndView 视图
+     * @throws Exception 异常
+     */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         // 记录日志

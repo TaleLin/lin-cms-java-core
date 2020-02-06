@@ -5,12 +5,22 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+/**
+ * Bean 工具函数
+ */
 public class BeanUtil {
 
     private static final String SET_PREFIX = "set";
     private static final String IS_PREFIX = "is";
     private static final String GET_PREFIX = "get";
 
+    /**
+     * 获得类的属性
+     *
+     * @param clazz        类
+     * @param propertyName 属性名
+     * @return 属性值
+     */
     public static PropertyDescriptor getPropertyDescriptor(Class<?> clazz, String propertyName) {
         //根据需求，定制 自己的get和set方法
         Method setMethod = null;
@@ -34,6 +44,13 @@ public class BeanUtil {
         return pd;
     }
 
+    /**
+     * 获得类的属性2
+     *
+     * @param clazz        类
+     * @param propertyName 属性名
+     * @return 属性值
+     */
     public static PropertyDescriptor getPropertyDescriptor2(Class<?> clazz, String propertyName) {
         //使用 PropertyDescriptor 提供的 get和set方法
         try {
@@ -44,6 +61,13 @@ public class BeanUtil {
         return null;
     }
 
+    /**
+     * 设置对象属性
+     *
+     * @param obj          对象
+     * @param propertyName 属性名
+     * @param value        属性值
+     */
     public static void setProperty(Object obj, String propertyName, Object value) {
         Class<?> clazz = obj.getClass();// 获取对象的类型
         PropertyDescriptor pd = getPropertyDescriptor(clazz, propertyName);// 获取
@@ -60,6 +84,13 @@ public class BeanUtil {
         }
     }
 
+    /**
+     * 获得对象的属性
+     *
+     * @param obj          对象
+     * @param propertyName 属性名
+     * @return 属性值
+     */
     public static String getProperty(Object obj, String propertyName) {
         Class<?> clazz = obj.getClass();// 获取对象的类型
         String value = null;
@@ -75,7 +106,11 @@ public class BeanUtil {
     }
 
     /**
-     * 获得属性，String类型
+     * 获得string属性值
+     *
+     * @param obj      对象
+     * @param propName 属性名
+     * @return 属性值
      */
     public static String getValueByPropName(Object obj, String propName) {
         Class<?> clazz = obj.getClass();// 获取对象的类型
@@ -92,6 +127,12 @@ public class BeanUtil {
         return value;
     }
 
+    /**
+     * 字符串首字母大写
+     *
+     * @param s 字符串
+     * @return 处理后字符串
+     */
     public static String toUpperCaseFirstOne(String s) {
         if (Character.isUpperCase(s.charAt(0)))
             return s;

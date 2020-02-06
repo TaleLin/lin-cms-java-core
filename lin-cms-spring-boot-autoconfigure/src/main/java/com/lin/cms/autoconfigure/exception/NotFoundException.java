@@ -4,6 +4,9 @@ import com.lin.cms.autoconfigure.beans.Code;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * not found
+ */
 public class NotFoundException extends HttpException {
 
     @Getter

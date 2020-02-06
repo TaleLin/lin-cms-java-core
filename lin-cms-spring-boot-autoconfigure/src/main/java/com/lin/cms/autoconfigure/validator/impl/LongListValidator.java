@@ -6,6 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
+/**
+ * long 列表校验器
+ */
 public class LongListValidator implements ConstraintValidator<LongList, List<Long>> {
 
     private long min;
@@ -21,6 +24,13 @@ public class LongListValidator implements ConstraintValidator<LongList, List<Lon
         this.allowBlank = constraintAnnotation.allowBlank();
     }
 
+    /**
+     * 校验
+     *
+     * @param value   传入值
+     * @param context 上下文
+     * @return 是否成功
+     */
     @Override
     public boolean isValid(List<Long> value, ConstraintValidatorContext context) {
         if ((value == null || value.isEmpty())) {

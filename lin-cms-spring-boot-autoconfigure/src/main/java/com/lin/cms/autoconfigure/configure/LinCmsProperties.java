@@ -2,7 +2,9 @@ package com.lin.cms.autoconfigure.configure;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-
+/**
+ * lin-cms 配置属性
+ */
 @SuppressWarnings("ConfigurationProperties")
 @ConfigurationProperties("lin.cms")
 public class LinCmsProperties {
@@ -39,6 +41,11 @@ public class LinCmsProperties {
         return tokenAccessExpire;
     }
 
+    /**
+     * 设置 access token 过期时间
+     *
+     * @param tokenAccessExpire 过期时间
+     */
     public void setTokenAccessExpire(Long tokenAccessExpire) {
         this.tokenAccessExpire = tokenAccessExpire;
     }
@@ -47,6 +54,11 @@ public class LinCmsProperties {
         return tokenRefreshExpire;
     }
 
+    /**
+     * 设置 refresh token 过期时间
+     *
+     * @param tokenRefreshExpire 过期时间
+     */
     public void setTokenRefreshExpire(Long tokenRefreshExpire) {
         this.tokenRefreshExpire = tokenRefreshExpire;
     }

@@ -78,3 +78,5 @@ curl http://localhost:5000/
 ```
 
 最后，祝贺你，开始了一段新的旅程。
+
+<RightMenu />

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+/**
+ * 权限拦截器
+ */
 public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
@@ -23,10 +26,24 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
     public AuthorizeInterceptor() {
     }
 
+    /**
+     * 构造函数
+     *
+     * @param excludeMethods 不检查方法
+     */
     public AuthorizeInterceptor(String[] excludeMethods) {
         this.excludeMethods = excludeMethods;
     }
 
+    /**
+     * 前置处理
+     *
+     * @param request  request 请求
+     * @param response 相应
+     * @param handler  处理器
+     * @return 是否成功
+     * @throws Exception 异常
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (checkInExclude(request.getMethod())) {

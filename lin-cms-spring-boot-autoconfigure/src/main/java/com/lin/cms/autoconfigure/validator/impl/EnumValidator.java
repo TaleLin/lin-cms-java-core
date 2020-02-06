@@ -6,6 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.Method;
 
+/**
+ * 枚举校验器
+ */
 public class EnumValidator implements ConstraintValidator<Enum, Object> {
 
     private Class<?> cls; //枚举类
@@ -19,6 +22,13 @@ public class EnumValidator implements ConstraintValidator<Enum, Object> {
         allowNull = constraintAnnotation.allowNull();
     }
 
+    /**
+     * 校验
+     *
+     * @param value   传入值
+     * @param context 上下文
+     * @return 是否成功
+     */
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         if (value == null && allowNull) {

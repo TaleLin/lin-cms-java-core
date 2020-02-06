@@ -4,7 +4,9 @@ import com.lin.cms.autoconfigure.beans.Code;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-
+/**
+ * 文件太大异常
+ */
 public class FileTooLargeException extends HttpException {
 
     @Getter

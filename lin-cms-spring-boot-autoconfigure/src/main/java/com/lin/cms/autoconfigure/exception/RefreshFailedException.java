@@ -4,6 +4,9 @@ import com.lin.cms.autoconfigure.beans.Code;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * 刷新令牌失败
+ */
 public class RefreshFailedException extends HttpException {
 
     @Getter

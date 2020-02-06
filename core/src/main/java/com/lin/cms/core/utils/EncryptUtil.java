@@ -4,6 +4,9 @@ import com.amdelamar.jhash.Hash;
 import com.amdelamar.jhash.algorithms.Type;
 import com.amdelamar.jhash.exception.InvalidHashException;
 
+/**
+ * 加密工具类
+ */
 public class EncryptUtil {
 
     /**

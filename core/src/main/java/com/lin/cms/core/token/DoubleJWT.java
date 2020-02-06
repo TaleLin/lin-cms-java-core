@@ -15,9 +15,8 @@ import java.util.Map;
 import static com.lin.cms.core.consts.TokenConst.*;
 
 /**
- * 支持双模式
- * 1。 access、refresh token
- * 2。 single token
+ * 支持双令牌模式
+ * access、refresh token
  */
 public class DoubleJWT {
 

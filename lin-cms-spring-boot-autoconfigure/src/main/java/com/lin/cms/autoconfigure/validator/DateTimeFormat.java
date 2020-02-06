@@ -14,6 +14,8 @@ public @interface DateTimeFormat {
 
     /**
      * 是否允许传入空的日期，如果为false，当传入空字符串时，校验失败
+     *
+     * @return 是否可以为空
      */
     boolean allowNull() default false;
 

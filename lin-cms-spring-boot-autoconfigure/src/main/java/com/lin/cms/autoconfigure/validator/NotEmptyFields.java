@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 校验List<String>类型
+ * 校验List String 类型
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

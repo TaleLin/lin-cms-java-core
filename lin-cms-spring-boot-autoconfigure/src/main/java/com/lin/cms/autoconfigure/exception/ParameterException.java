@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 参数错误
+ */
 public class ParameterException extends HttpException {
 
     @Getter

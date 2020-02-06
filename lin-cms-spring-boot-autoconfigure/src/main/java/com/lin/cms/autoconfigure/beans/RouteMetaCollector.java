@@ -10,6 +10,9 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 路由信息收集器
+ */
 public class RouteMetaCollector implements BeanPostProcessor {
 
     private Map<String, RouteMeta> metaMap = new ConcurrentHashMap<>();
@@ -32,7 +35,11 @@ public class RouteMetaCollector implements BeanPostProcessor {
     }
 
     /**
-     * 扫描注解
+     * 扫描注解信息，并提取
+     *
+     * @param bean     spring bean
+     * @param beanName 名称
+     * @return spring bean
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {
@@ -82,6 +89,11 @@ public class RouteMetaCollector implements BeanPostProcessor {
         }
     }
 
+    /**
+     * 获取路由信息map
+     *
+     * @return 路由信息map
+     */
     public Map<String, RouteMeta> getMetaMap() {
         return metaMap;
     }
@@ -105,6 +117,11 @@ public class RouteMetaCollector implements BeanPostProcessor {
         this.metaMap = metaMap;
     }
 
+    /**
+     * 获得结构化路由信息
+     *
+     * @return 路由信息
+     */
     public Map<String, Map<String, Set<String>>> getStructuralMeta() {
         return structuralMeta;
     }

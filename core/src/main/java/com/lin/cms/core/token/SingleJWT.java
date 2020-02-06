@@ -11,7 +11,10 @@ import com.lin.cms.core.utils.DateUtil;
 import java.util.Date;
 import java.util.Map;
 
-
+/**
+ * 单令牌模式
+ * single token
+ */
 public class SingleJWT {
 
     private Algorithm algorithm;

@@ -4,6 +4,9 @@ import com.lin.cms.autoconfigure.beans.Code;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * 失败异常
+ */
 public class FailedException extends HttpException {
 
     @Getter

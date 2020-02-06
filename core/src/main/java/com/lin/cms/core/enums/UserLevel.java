@@ -1,5 +1,8 @@
 package com.lin.cms.core.enums;
 
+/**
+ * 用户等级
+ */
 public enum UserLevel {
 
     TOURIST, // 游客即可访问

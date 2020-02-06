@@ -6,6 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.text.SimpleDateFormat;
 
+/**
+ * 日期校验器实现
+ */
 public class DateTimeValidator implements ConstraintValidator<DateTimeFormat, String> {
 
     private DateTimeFormat dateTimeFormat;
@@ -15,7 +18,13 @@ public class DateTimeValidator implements ConstraintValidator<DateTimeFormat, St
         this.dateTimeFormat = dateTime;
     }
 
-
+    /**
+     * 校验
+     *
+     * @param value   传入数据
+     * @param context 上下文
+     * @return 是否成功
+     */
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         // 如果value为null
