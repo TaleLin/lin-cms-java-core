@@ -5,9 +5,10 @@
 
     <groupId>io.github.talelin</groupId>
     <artifactId>lin-cms-core</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-RC1</version>
     <packaging>jar</packaging>
     <name>lin-cms-core</name>
+    <url>https://github.com/TaleLin/lin-cms-java-core</url>
     <description>core library for lin-cms</description>
 
     <properties>
