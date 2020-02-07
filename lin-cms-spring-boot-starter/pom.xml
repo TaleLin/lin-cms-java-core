@@ -29,7 +29,7 @@
         <dependency>
             <groupId>io.github.talelin</groupId>
             <artifactId>lin-cms-spring-boot-autoconfigure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1-RC1</version>
         </dependency>
     </dependencies>
 
