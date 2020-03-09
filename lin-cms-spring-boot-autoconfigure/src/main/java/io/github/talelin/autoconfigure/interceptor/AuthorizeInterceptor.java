@@ -6,6 +6,7 @@ import io.github.talelin.core.enums.UserLevel;
 import io.github.talelin.core.utils.AnnotationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,6 +67,11 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
             // handler不是HandlerMethod的情况
             return authorizeVerifyResolver.handleNotHandlerMethod(request, response, handler);
         }
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        authorizeVerifyResolver.handlePostHandle(request, response, handler, modelAndView);
     }
 
     private boolean handleNoMeta(HttpServletRequest request, HttpServletResponse response, Method method) {

@@ -1,6 +1,7 @@
 package io.github.talelin.autoconfigure.interfaces;
 
 import io.github.talelin.core.annotation.RouteMeta;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,4 +61,14 @@ public interface AuthorizeVerifyResolver {
      * @return 是否成功
      */
     boolean handleNotHandlerMethod(HttpServletRequest request, HttpServletResponse response, Object handler);
+
+    /**
+     * 后置处理
+     *
+     * @param request      请求
+     * @param response     相应
+     * @param handler      处理器
+     * @param modelAndView 视图
+     */
+    void handlePostHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView);
 }
