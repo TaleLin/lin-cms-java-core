@@ -74,6 +74,11 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
         authorizeVerifyResolver.handlePostHandle(request, response, handler, modelAndView);
     }
 
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        authorizeVerifyResolver.handleAfterCompletion(request, response, handler, ex);
+    }
+
     private boolean handleNoMeta(HttpServletRequest request, HttpServletResponse response, Method method) {
         Annotation[] annotations = method.getAnnotations();
         UserLevel level = AnnotationUtil.findRequired(annotations);

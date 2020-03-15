@@ -70,5 +70,17 @@ public interface AuthorizeVerifyResolver {
      * @param handler      处理器
      * @param modelAndView 视图
      */
-    void handlePostHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView);
+    default void handlePostHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+    }
+
+    /**
+     * 相应完成后处理
+     *
+     * @param request  请求
+     * @param response 相应
+     * @param handler  处理器
+     * @param ex       异常
+     */
+    default void handleAfterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    }
 }
