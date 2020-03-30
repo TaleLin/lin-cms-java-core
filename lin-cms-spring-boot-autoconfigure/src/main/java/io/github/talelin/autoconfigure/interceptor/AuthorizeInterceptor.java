@@ -1,7 +1,8 @@
 package io.github.talelin.autoconfigure.interceptor;
 
+import io.github.talelin.autoconfigure.beans.MetaInfo;
+import io.github.talelin.autoconfigure.beans.RouteMetaCollector;
 import io.github.talelin.autoconfigure.interfaces.AuthorizeVerifyResolver;
-import io.github.talelin.core.annotation.RouteMeta;
 import io.github.talelin.core.enums.UserLevel;
 import io.github.talelin.core.utils.AnnotationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private AuthorizeVerifyResolver authorizeVerifyResolver;
+
+    @Autowired
+    private RouteMetaCollector routeMetaCollector;
 
     private String[] excludeMethods = new String[]{"OPTIONS"};
 
@@ -54,7 +58,12 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
-            RouteMeta meta = method.getAnnotation(RouteMeta.class);
+            String methodName = method.getName();
+            String className = method.getDeclaringClass().getName();
+            String identity = className + "#" + methodName;
+            MetaInfo meta = routeMetaCollector.findMeta(identity);
+            // AdminMeta adminMeta = method.getAnnotation(AdminMeta.class);
+            // RouteMeta meta = method.getAnnotation(RouteMeta.class);
             // 考虑两种情况，1. 有 meta；2. 无 meta
             if (meta == null) {
                 // 无meta的话，adminRequired和loginRequired
@@ -84,11 +93,10 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
         UserLevel level = AnnotationUtil.findRequired(annotations);
         switch (level) {
             case LOGIN:
-                // 登陆权限
-                return authorizeVerifyResolver.handleLogin(request, response, null);
             case GROUP:
                 // 分组权限
-                return false;
+                // 登陆权限
+                return authorizeVerifyResolver.handleLogin(request, response, null);
             case ADMIN:
                 // 管理员权限
                 return authorizeVerifyResolver.handleAdmin(request, response, null);
@@ -100,14 +108,10 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
         }
     }
 
-    private boolean handleMeta(HttpServletRequest request, HttpServletResponse response, Method method, RouteMeta meta) {
-        // 没有挂载到权限系统中，通过
-        // 如果权限存在meta，可是却没有mount，则当作 no meta 处理
-        if (!meta.mount()) {
-            return this.handleNoMeta(request, response, method);
-        }
-        Annotation[] annotations = method.getAnnotations();
-        UserLevel level = AnnotationUtil.findRequired(annotations);
+    private boolean handleMeta(HttpServletRequest request, HttpServletResponse response, Method method, MetaInfo meta) {
+        // Annotation[] annotations = method.getAnnotations();
+        // UserLevel level = AnnotationUtil.findRequired(annotations);
+        UserLevel level = meta.getUserLevel();
         switch (level) {
             case LOGIN:
                 // 登陆权限

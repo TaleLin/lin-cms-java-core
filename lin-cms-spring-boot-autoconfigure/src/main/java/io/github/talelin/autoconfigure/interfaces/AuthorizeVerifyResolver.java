@@ -1,6 +1,6 @@
 package io.github.talelin.autoconfigure.interfaces;
 
-import io.github.talelin.core.annotation.RouteMeta;
+import io.github.talelin.autoconfigure.beans.MetaInfo;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ public interface AuthorizeVerifyResolver {
      * @param meta     路由信息
      * @return 是否成功
      */
-    boolean handleLogin(HttpServletRequest request, HttpServletResponse response, RouteMeta meta);
+    boolean handleLogin(HttpServletRequest request, HttpServletResponse response, MetaInfo meta);
 
     /**
      * 处理 GroupRequired的情况
@@ -30,7 +30,7 @@ public interface AuthorizeVerifyResolver {
      * @param meta     路由信息
      * @return 是否成功
      */
-    boolean handleGroup(HttpServletRequest request, HttpServletResponse response, RouteMeta meta);
+    boolean handleGroup(HttpServletRequest request, HttpServletResponse response, MetaInfo meta);
 
     /**
      * 处理 AdminRequired的情况
@@ -40,7 +40,7 @@ public interface AuthorizeVerifyResolver {
      * @param meta     路由信息
      * @return 是否成功
      */
-    boolean handleAdmin(HttpServletRequest request, HttpServletResponse response, RouteMeta meta);
+    boolean handleAdmin(HttpServletRequest request, HttpServletResponse response, MetaInfo meta);
 
     /**
      * 处理 RefreshRequired的情况
@@ -50,7 +50,7 @@ public interface AuthorizeVerifyResolver {
      * @param meta     路由信息
      * @return 是否成功
      */
-    boolean handleRefresh(HttpServletRequest request, HttpServletResponse response, RouteMeta meta);
+    boolean handleRefresh(HttpServletRequest request, HttpServletResponse response, MetaInfo meta);
 
     /**
      * 处理 当前的handler 不是 HandlerMethod 的情况

@@ -1,7 +1,11 @@
 package io.github.talelin.autoconfigure.beans;
 
-import io.github.talelin.autoconfigure.interfaces.MetaPreHandler;
+import io.github.talelin.core.annotation.AdminMeta;
+import io.github.talelin.core.annotation.GroupMeta;
+import io.github.talelin.core.annotation.LoginMeta;
 import io.github.talelin.core.annotation.RouteMeta;
+import io.github.talelin.core.enums.UserLevel;
+import io.github.talelin.core.utils.AnnotationUtil;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
@@ -15,19 +19,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class RouteMetaCollector implements BeanPostProcessor {
 
-    private Map<String, RouteMeta> metaMap = new ConcurrentHashMap<>();
+    private Map<String, MetaInfo> metaMap = new ConcurrentHashMap<>();
 
     private Map<String, Map<String, Set<String>>> structuralMeta = new ConcurrentHashMap<>();
 
-    private MetaPreHandler preHandler;
-
     public RouteMetaCollector() {
     }
-
-    public RouteMetaCollector(MetaPreHandler preHandler) {
-        this.preHandler = preHandler;
-    }
-
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) {
@@ -45,26 +42,43 @@ public class RouteMetaCollector implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) {
         Method[] methods = ReflectionUtils.getAllDeclaredMethods(bean.getClass());
         for (Method method : methods) {
-            RouteMeta meta = AnnotationUtils.findAnnotation(method, RouteMeta.class);
-            if (meta != null) {
-                if (preHandler != null) {
-                    preHandler.handle(meta);
-                }
-                if (meta.mount()) {
-                    String methodName = method.getName();
-                    String className = method.getDeclaringClass().getName();
-                    String identity = className + "#" + methodName;
-                    metaMap.put(identity, meta);
-                    this.putMetaIntoStructuralMeta(identity, meta);
-                }
+            AdminMeta adminMeta = AnnotationUtils.findAnnotation(method, AdminMeta.class);
+            if (adminMeta != null && adminMeta.mount()) {
+                putOneMetaInfo(method, adminMeta.permission(), adminMeta.module(), UserLevel.ADMIN);
+                continue;
+            }
+            GroupMeta groupMeta = AnnotationUtils.findAnnotation(method, GroupMeta.class);
+            if (groupMeta != null && groupMeta.mount()) {
+                putOneMetaInfo(method, groupMeta.permission(), groupMeta.module(), UserLevel.GROUP);
+                continue;
+            }
+            LoginMeta loginMeta = AnnotationUtils.findAnnotation(method, LoginMeta.class);
+            if (loginMeta != null && loginMeta.mount()) {
+                putOneMetaInfo(method, loginMeta.permission(), loginMeta.module(), UserLevel.LOGIN);
+                continue;
+            }
+            // 最后寻找 RouteMeta
+            RouteMeta routeMeta = AnnotationUtils.findAnnotation(method, RouteMeta.class);
+            if (routeMeta != null && routeMeta.mount()) {
+                UserLevel level = AnnotationUtil.findRequired(method.getAnnotations());
+                putOneMetaInfo(method, routeMeta.permission(), routeMeta.module(), level);
             }
         }
         return bean;
     }
 
-    private void putMetaIntoStructuralMeta(String identity, RouteMeta meta) {
-        String module = meta.module();
-        String permission = meta.permission();
+    private void putOneMetaInfo(Method method, String permission, String module, UserLevel userLevel) {
+        String methodName = method.getName();
+        String className = method.getDeclaringClass().getName();
+        String identity = className + "#" + methodName;
+        MetaInfo metaInfo = new MetaInfo(permission, module, identity, userLevel);
+        metaMap.put(identity, metaInfo);
+        this.putMetaIntoStructuralMeta(identity, metaInfo);
+    }
+
+    private void putMetaIntoStructuralMeta(String identity, MetaInfo meta) {
+        String module = meta.getModule();
+        String permission = meta.getPermission();
         // 如果已经存在了该 module，直接向里面增加
         if (structuralMeta.containsKey(module)) {
             Map<String, Set<String>> moduleMap = structuralMeta.get(module);
@@ -94,26 +108,26 @@ public class RouteMetaCollector implements BeanPostProcessor {
      *
      * @return 路由信息map
      */
-    public Map<String, RouteMeta> getMetaMap() {
+    public Map<String, MetaInfo> getMetaMap() {
         return metaMap;
     }
 
-    public RouteMeta findMeta(String key) {
+    public MetaInfo findMeta(String key) {
         return metaMap.get(key);
     }
 
-    public RouteMeta findMetaByPermission(String permission) {
-        Collection<RouteMeta> values = metaMap.values();
-        RouteMeta[] objects = values.toArray(new RouteMeta[0]);
+    public MetaInfo findMetaByPermission(String permission) {
+        Collection<MetaInfo> values = metaMap.values();
+        MetaInfo[] objects = values.toArray(new MetaInfo[0]);
         for (int i = 0; i < objects.length; i++) {
-            if (objects[i].permission().equals(permission)) {
+            if (objects[i].getPermission().equals(permission)) {
                 return objects[i];
             }
         }
         return null;
     }
 
-    public void setMetaMap(Map<String, RouteMeta> metaMap) {
+    public void setMetaMap(Map<String, MetaInfo> metaMap) {
         this.metaMap = metaMap;
     }
 
