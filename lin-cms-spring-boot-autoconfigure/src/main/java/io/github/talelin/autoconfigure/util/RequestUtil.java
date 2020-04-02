@@ -1,4 +1,4 @@
-package io.github.talelin.autoconfigure.utils;
+package io.github.talelin.autoconfigure.util;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

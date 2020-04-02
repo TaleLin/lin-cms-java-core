@@ -1,11 +1,11 @@
-package io.github.talelin.autoconfigure.beans;
+package io.github.talelin.autoconfigure.bean;
 
 import io.github.talelin.core.annotation.AdminMeta;
 import io.github.talelin.core.annotation.GroupMeta;
 import io.github.talelin.core.annotation.LoginMeta;
 import io.github.talelin.core.annotation.RouteMeta;
-import io.github.talelin.core.enums.UserLevel;
-import io.github.talelin.core.utils.AnnotationUtil;
+import io.github.talelin.core.enumeration.UserLevel;
+import io.github.talelin.core.util.AnnotationUtil;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;

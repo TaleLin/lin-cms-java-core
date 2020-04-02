@@ -1,4 +1,4 @@
-package io.github.talelin.autoconfigure.beans;
+package io.github.talelin.autoconfigure.bean;
 
 
 /**
@@ -24,7 +24,7 @@ public enum Code {
 
     TOKEN_EXPIRED(10050, "Token Expired", "令牌过期"),
 
-    REPEAT(10060, "Repeat", "字段重复"),
+    DUPLICATED(10060, "Duplicated", "字段重复"),
 
     INTERNAL_SERVER_ERROR(9999, "Internal Server Error", "服务器未知错误"),
 

@@ -1,6 +1,6 @@
-package io.github.talelin.autoconfigure.beans;
+package io.github.talelin.autoconfigure.bean;
 
-import io.github.talelin.core.enums.UserLevel;
+import io.github.talelin.core.enumeration.UserLevel;
 
 public class MetaInfo {
 

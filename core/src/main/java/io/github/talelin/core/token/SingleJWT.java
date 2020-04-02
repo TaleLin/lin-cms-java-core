@@ -6,7 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import io.github.talelin.core.utils.DateUtil;
+import io.github.talelin.core.util.DateUtil;
 
 import java.util.Date;
 import java.util.Map;

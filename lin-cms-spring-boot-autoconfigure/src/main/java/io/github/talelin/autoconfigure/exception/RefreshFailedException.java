@@ -1,6 +1,6 @@
 package io.github.talelin.autoconfigure.exception;
 
-import io.github.talelin.autoconfigure.beans.Code;
+import io.github.talelin.autoconfigure.bean.Code;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 

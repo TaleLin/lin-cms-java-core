@@ -1,4 +1,4 @@
-package io.github.talelin.core.utils;
+package io.github.talelin.core.util;
 
 import java.util.Date;
 

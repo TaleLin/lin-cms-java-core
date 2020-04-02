@@ -1,9 +1,9 @@
-package io.github.talelin.core.consts;
+package io.github.talelin.core.constant;
 
 /**
  * 令牌相关常量
  */
-public class TokenConst {
+public class TokenConstant {
 
     public final static String ACCESS_TYPE = "access";
 

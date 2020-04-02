@@ -1,4 +1,4 @@
-package io.github.talelin.autoconfigure.configure;
+package io.github.talelin.autoconfigure.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

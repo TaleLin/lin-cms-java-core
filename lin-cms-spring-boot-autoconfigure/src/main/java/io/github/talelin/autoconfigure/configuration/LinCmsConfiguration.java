@@ -1,4 +1,4 @@
-package io.github.talelin.autoconfigure.configure;
+package io.github.talelin.autoconfigure.configuration;
 
 import io.github.talelin.autoconfigure.interceptor.AuthorizeInterceptor;
 import io.github.talelin.autoconfigure.interceptor.LogInterceptor;
@@ -17,7 +17,7 @@ import org.springframework.core.annotation.Order;
 @Configuration(proxyBeanMethods = false)
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @EnableConfigurationProperties(LinCmsProperties.class)
-public class LinCmsConfigure {
+public class LinCmsConfiguration {
 
     @Autowired
     private LinCmsProperties properties;

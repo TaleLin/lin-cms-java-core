@@ -1,7 +1,7 @@
-package io.github.talelin.core.utils;
+package io.github.talelin.core.util;
 
 import io.github.talelin.core.annotation.*;
-import io.github.talelin.core.enums.UserLevel;
+import io.github.talelin.core.enumeration.UserLevel;
 
 import java.lang.annotation.Annotation;
 

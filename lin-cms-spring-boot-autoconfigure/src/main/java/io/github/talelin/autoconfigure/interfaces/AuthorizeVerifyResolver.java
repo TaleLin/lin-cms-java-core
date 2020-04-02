@@ -1,6 +1,6 @@
 package io.github.talelin.autoconfigure.interfaces;
 
-import io.github.talelin.autoconfigure.beans.MetaInfo;
+import io.github.talelin.autoconfigure.bean.MetaInfo;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;

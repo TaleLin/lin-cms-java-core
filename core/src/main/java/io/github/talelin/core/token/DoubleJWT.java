@@ -7,8 +7,8 @@ import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import io.github.talelin.core.utils.DateUtil;
-import io.github.talelin.core.consts.TokenConst;
+import io.github.talelin.core.util.DateUtil;
+import io.github.talelin.core.constant.TokenConstant;
 
 import java.util.Date;
 import java.util.Map;
@@ -73,7 +73,7 @@ public class DoubleJWT {
     public Map<String, Claim> decodeAccessToken(String token) {
         DecodedJWT jwt = accessVerifier.verify(token);
         checkTokenExpired(jwt.getExpiresAt());
-        checkTokenType(jwt.getClaim("type").asString(), TokenConst.ACCESS_TYPE);
+        checkTokenType(jwt.getClaim("type").asString(), TokenConstant.ACCESS_TYPE);
         checkTokenScope(jwt.getClaim("scope").asString());
         return jwt.getClaims();
     }
@@ -81,13 +81,13 @@ public class DoubleJWT {
     public Map<String, Claim> decodeRefreshToken(String token) {
         DecodedJWT jwt = refreshVerifier.verify(token);
         checkTokenExpired(jwt.getExpiresAt());
-        checkTokenType(jwt.getClaim("type").asString(), TokenConst.REFRESH_TYPE);
+        checkTokenType(jwt.getClaim("type").asString(), TokenConstant.REFRESH_TYPE);
         checkTokenScope(jwt.getClaim("scope").asString());
         return jwt.getClaims();
     }
 
     private void checkTokenScope(String scope) {
-        if (scope == null || !scope.equals(TokenConst.LIN_SCOPE)) {
+        if (scope == null || !scope.equals(TokenConstant.LIN_SCOPE)) {
             throw new InvalidClaimException("token scope is invalid");
         }
     }
@@ -106,16 +106,16 @@ public class DoubleJWT {
     }
 
     public String generateAccessToken(long identity) {
-        return generateToken(TokenConst.ACCESS_TYPE, identity, TokenConst.LIN_SCOPE, this.accessExpire);
+        return generateToken(TokenConstant.ACCESS_TYPE, identity, TokenConstant.LIN_SCOPE, this.accessExpire);
     }
 
     public String generateRefreshToken(long identity) {
-        return generateToken(TokenConst.REFRESH_TYPE, identity, TokenConst.LIN_SCOPE, this.refreshExpire);
+        return generateToken(TokenConstant.REFRESH_TYPE, identity, TokenConstant.LIN_SCOPE, this.refreshExpire);
     }
 
     public Tokens generateTokens(long identity) {
-        String access = this.generateToken(TokenConst.ACCESS_TYPE, identity, TokenConst.LIN_SCOPE, this.accessExpire);
-        String refresh = this.generateToken(TokenConst.REFRESH_TYPE, identity, TokenConst.LIN_SCOPE, this.refreshExpire);
+        String access = this.generateToken(TokenConstant.ACCESS_TYPE, identity, TokenConstant.LIN_SCOPE, this.accessExpire);
+        String refresh = this.generateToken(TokenConstant.REFRESH_TYPE, identity, TokenConstant.LIN_SCOPE, this.refreshExpire);
         return new Tokens(access, refresh);
     }
 

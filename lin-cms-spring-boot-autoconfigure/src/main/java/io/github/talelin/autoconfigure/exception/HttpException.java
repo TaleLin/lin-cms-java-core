@@ -1,6 +1,6 @@
 package io.github.talelin.autoconfigure.exception;
 
-import io.github.talelin.autoconfigure.beans.Code;
+import io.github.talelin.autoconfigure.bean.Code;
 import io.github.talelin.autoconfigure.interfaces.BaseResponse;
 import org.springframework.http.HttpStatus;
 

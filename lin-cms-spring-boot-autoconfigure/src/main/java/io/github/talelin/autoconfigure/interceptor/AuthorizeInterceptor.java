@@ -1,10 +1,10 @@
 package io.github.talelin.autoconfigure.interceptor;
 
-import io.github.talelin.autoconfigure.beans.MetaInfo;
-import io.github.talelin.autoconfigure.beans.RouteMetaCollector;
+import io.github.talelin.autoconfigure.bean.MetaInfo;
+import io.github.talelin.autoconfigure.bean.RouteMetaCollector;
 import io.github.talelin.autoconfigure.interfaces.AuthorizeVerifyResolver;
-import io.github.talelin.core.enums.UserLevel;
-import io.github.talelin.core.utils.AnnotationUtil;
+import io.github.talelin.core.enumeration.UserLevel;
+import io.github.talelin.core.util.AnnotationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;

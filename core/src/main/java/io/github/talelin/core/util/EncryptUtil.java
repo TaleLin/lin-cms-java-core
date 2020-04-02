@@ -1,4 +1,4 @@
-package io.github.talelin.core.utils;
+package io.github.talelin.core.util;
 
 import com.amdelamar.jhash.Hash;
 import com.amdelamar.jhash.algorithms.Type;

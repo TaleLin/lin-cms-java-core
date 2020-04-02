@@ -1,6 +1,6 @@
 package io.github.talelin.autoconfigure.response;
 
-import io.github.talelin.autoconfigure.beans.Code;
+import io.github.talelin.autoconfigure.bean.Code;
 import io.github.talelin.autoconfigure.interfaces.BaseResponse;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

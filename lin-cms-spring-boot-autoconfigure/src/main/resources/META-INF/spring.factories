@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.talelin.autoconfigure.configure.LinCmsConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.talelin.autoconfigure.configuration.LinCmsConfiguration

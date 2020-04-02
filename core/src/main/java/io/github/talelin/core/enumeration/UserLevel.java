@@ -1,4 +1,4 @@
-package io.github.talelin.core.enums;
+package io.github.talelin.core.enumeration;
 
 /**
  * 用户等级

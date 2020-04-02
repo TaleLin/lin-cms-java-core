@@ -3,7 +3,7 @@ package io.github.talelin.core.token;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
-import io.github.talelin.core.consts.TokenConst;
+import io.github.talelin.core.constant.TokenConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,8 +30,8 @@ public class DoubleJWTTest {
         assertNotNull(token);
         log.info(token);
         Map<String, Claim> claimMap = jwt.decodeAccessToken(token);
-        Assert.assertEquals(TokenConst.LIN_SCOPE, claimMap.get("scope").asString());
-        Assert.assertEquals(TokenConst.ACCESS_TYPE, claimMap.get("type").asString());
+        Assert.assertEquals(TokenConstant.LIN_SCOPE, claimMap.get("scope").asString());
+        Assert.assertEquals(TokenConstant.ACCESS_TYPE, claimMap.get("type").asString());
     }
 
     @Test
@@ -41,8 +41,8 @@ public class DoubleJWTTest {
         assertNotNull(token);
         log.info(token);
         Map<String, Claim> claimMap = jwt.decodeRefreshToken(token);
-        Assert.assertEquals(TokenConst.LIN_SCOPE, claimMap.get("scope").asString());
-        Assert.assertEquals(TokenConst.REFRESH_TYPE, claimMap.get("type").asString());
+        Assert.assertEquals(TokenConstant.LIN_SCOPE, claimMap.get("scope").asString());
+        Assert.assertEquals(TokenConstant.REFRESH_TYPE, claimMap.get("type").asString());
     }
 
     @Test
@@ -112,8 +112,8 @@ public class DoubleJWTTest {
         log.info("{}", tokens);
 
         Map<String, Claim> claimMap = jwt.decodeAccessToken(tokens.getAccessToken());
-        Assert.assertEquals(TokenConst.LIN_SCOPE, claimMap.get("scope").asString());
-        Assert.assertEquals(TokenConst.ACCESS_TYPE, claimMap.get("type").asString());
+        Assert.assertEquals(TokenConstant.LIN_SCOPE, claimMap.get("scope").asString());
+        Assert.assertEquals(TokenConstant.ACCESS_TYPE, claimMap.get("type").asString());
     }
 
     @Test

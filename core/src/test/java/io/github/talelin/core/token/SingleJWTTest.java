@@ -2,7 +2,7 @@ package io.github.talelin.core.token;
 
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
-import io.github.talelin.core.utils.DateUtil;
+import io.github.talelin.core.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
