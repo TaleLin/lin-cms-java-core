@@ -15,22 +15,21 @@ public class FileTooLargeException extends HttpException {
     @Getter
     protected int httpCode = HttpStatus.PAYLOAD_TOO_LARGE.value();
 
+    public FileTooLargeException() {
+        super(Code.FILE_TOO_LARGE.getDescription(), Code.FILE_TOO_LARGE.getCode());
+    }
 
     public FileTooLargeException(String message) {
         super(message);
     }
 
-    public FileTooLargeException() {
-        super(Code.FILE_TOO_LARGE.getDescription());
-    }
-
     public FileTooLargeException(int code) {
-        super(Code.FILE_TOO_LARGE.getDescription());
+        super(Code.FILE_TOO_LARGE.getDescription(), code);
         this.code = code;
     }
 
     public FileTooLargeException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

@@ -17,7 +17,7 @@ public class AuthorizationException extends HttpException {
     protected int code = Code.UN_AUTHORIZATION.getCode();
 
     public AuthorizationException() {
-        super(Code.UN_AUTHORIZATION.getDescription());
+        super(Code.UN_AUTHORIZATION.getDescription(), Code.UN_AUTHORIZATION.getCode());
     }
 
     public AuthorizationException(String message) {
@@ -25,12 +25,12 @@ public class AuthorizationException extends HttpException {
     }
 
     public AuthorizationException(int code) {
-        super(Code.UN_AUTHORIZATION.getDescription());
+        super(Code.UN_AUTHORIZATION.getDescription(), code);
         this.code = code;
     }
 
     public AuthorizationException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

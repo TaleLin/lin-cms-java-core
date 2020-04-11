@@ -15,21 +15,21 @@ public class RefreshFailedException extends HttpException {
     @Getter
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
+    public RefreshFailedException() {
+        super(Code.REFRESH_FAILED.getDescription(), Code.REFRESH_FAILED.getCode());
+    }
+
     public RefreshFailedException(String message) {
         super(message);
     }
 
-    public RefreshFailedException() {
-        super(Code.REFRESH_FAILED.getDescription());
-    }
-
     public RefreshFailedException(int code) {
-        super(Code.REFRESH_FAILED.getDescription());
+        super(Code.REFRESH_FAILED.getDescription(), code);
         this.code = code;
     }
 
     public RefreshFailedException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }
