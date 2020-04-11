@@ -15,21 +15,21 @@ public class TokenExpiredException extends HttpException {
     @Getter
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
+    public TokenExpiredException() {
+        super(Code.TOKEN_EXPIRED.getDescription(), Code.TOKEN_EXPIRED.getCode());
+    }
+
     public TokenExpiredException(String message) {
         super(message);
     }
 
-    public TokenExpiredException() {
-        super(Code.TOKEN_EXPIRED.getDescription());
-    }
-
     public TokenExpiredException(int code) {
-        super(Code.TOKEN_EXPIRED.getDescription());
+        super(Code.TOKEN_EXPIRED.getDescription(), code);
         this.code = code;
     }
 
     public TokenExpiredException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

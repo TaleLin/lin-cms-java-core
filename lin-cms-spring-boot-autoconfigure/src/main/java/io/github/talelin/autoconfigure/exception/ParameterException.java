@@ -21,7 +21,7 @@ public class ParameterException extends HttpException {
     private Map<String, Object> errors = new HashMap<>();
 
     public ParameterException() {
-        super(Code.PARAMETER_ERROR.getDescription());
+        super(Code.PARAMETER_ERROR.getDescription(), Code.PARAMETER_ERROR.getCode());
     }
 
     public ParameterException(String message) {
@@ -29,12 +29,12 @@ public class ParameterException extends HttpException {
     }
 
     public ParameterException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 
     public ParameterException(int code) {
-        super(Code.PARAMETER_ERROR.getDescription());
+        super(Code.PARAMETER_ERROR.getDescription(), code);
         this.code = code;
     }
 

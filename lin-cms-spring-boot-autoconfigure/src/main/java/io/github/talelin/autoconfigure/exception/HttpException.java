@@ -18,12 +18,15 @@ public class HttpException extends RuntimeException implements BaseResponse {
 
     protected int code = Code.INTERNAL_SERVER_ERROR.getCode();
 
+    protected boolean messageOnly = false;
+
     public HttpException() {
         super(Code.INTERNAL_SERVER_ERROR.getDescription());
     }
 
     public HttpException(String message) {
         super(message);
+        this.messageOnly = true;
     }
 
     public HttpException(int code) {
@@ -83,4 +86,9 @@ public class HttpException extends RuntimeException implements BaseResponse {
     public int getCode() {
         return this.code;
     }
+
+    public boolean isMessageOnly() {
+        return messageOnly;
+    }
+
 }

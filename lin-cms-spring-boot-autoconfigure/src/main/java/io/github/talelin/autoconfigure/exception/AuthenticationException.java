@@ -16,20 +16,21 @@ public class AuthenticationException extends HttpException {
     protected int code = Code.UN_AUTHENTICATION.getCode();
 
     public AuthenticationException() {
-        super(Code.UN_AUTHENTICATION.getDescription());
-    }
-
-    public AuthenticationException(int code) {
-        super(Code.UN_AUTHENTICATION.getDescription());
-        this.code = code;
+        super(Code.UN_AUTHENTICATION.getDescription(), Code.UN_AUTHENTICATION.getCode());
     }
 
     public AuthenticationException(String message) {
         super(message);
     }
 
+    public AuthenticationException(int code) {
+        super(Code.UN_AUTHENTICATION.getDescription(), code);
+        this.code = code;
+    }
+
+
     public AuthenticationException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

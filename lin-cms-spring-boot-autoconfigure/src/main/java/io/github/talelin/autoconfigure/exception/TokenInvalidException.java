@@ -15,21 +15,21 @@ public class TokenInvalidException extends HttpException {
     @Getter
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
+    public TokenInvalidException() {
+        super(Code.TOKEN_INVALID.getDescription(), Code.TOKEN_INVALID.getCode());
+    }
+
     public TokenInvalidException(String message) {
         super(message);
     }
 
-    public TokenInvalidException() {
-        super(Code.TOKEN_INVALID.getDescription());
-    }
-
     public TokenInvalidException(int code) {
-        super(Code.TOKEN_INVALID.getDescription());
+        super(Code.TOKEN_INVALID.getDescription(), code);
         this.code = code;
     }
 
     public TokenInvalidException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

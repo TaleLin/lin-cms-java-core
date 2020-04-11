@@ -16,7 +16,7 @@ public class FailedException extends HttpException {
     protected int httpCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
 
     public FailedException() {
-        super(Code.FAIL.getDescription());
+        super(Code.FAIL.getDescription(), Code.FAIL.getCode());
     }
 
     public FailedException(String message) {
@@ -24,12 +24,12 @@ public class FailedException extends HttpException {
     }
 
     public FailedException(int code) {
-        super(Code.FAIL.getDescription());
+        super(Code.FAIL.getDescription(), code);
         this.code = code;
     }
 
     public FailedException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

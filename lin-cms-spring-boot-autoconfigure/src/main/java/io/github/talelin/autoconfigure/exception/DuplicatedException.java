@@ -24,12 +24,12 @@ public class DuplicatedException extends HttpException {
     }
 
     public DuplicatedException(int code) {
-        super(Code.DUPLICATED.getDescription());
+        super(Code.DUPLICATED.getDescription(), Code.DUPLICATED.getCode());
         this.code = code;
     }
 
     public DuplicatedException(String message, int code) {
-        super(message);
+        super(message, Code.DUPLICATED.getCode());
         this.code = code;
     }
 }

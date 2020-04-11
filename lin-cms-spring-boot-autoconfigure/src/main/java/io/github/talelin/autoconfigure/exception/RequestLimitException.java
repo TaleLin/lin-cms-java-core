@@ -15,12 +15,12 @@ public class RequestLimitException extends HttpException {
     @Getter
     protected int httpCode = HttpStatus.TOO_MANY_REQUESTS.value();
 
-    public RequestLimitException(String message) {
-        super(message);
+    public RequestLimitException() {
+        super(Code.REQUEST_LIMIT.getDescription(), Code.REQUEST_LIMIT.getCode());
     }
 
-    public RequestLimitException() {
-        super(Code.REQUEST_LIMIT.getDescription());
+    public RequestLimitException(String message) {
+        super(message);
     }
 
     public RequestLimitException(int code) {
@@ -29,7 +29,7 @@ public class RequestLimitException extends HttpException {
     }
 
     public RequestLimitException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

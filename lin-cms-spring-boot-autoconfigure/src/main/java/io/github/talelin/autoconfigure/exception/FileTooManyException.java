@@ -16,22 +16,22 @@ public class FileTooManyException extends HttpException {
     protected int httpCode = HttpStatus.PAYLOAD_TOO_LARGE.value();
 
 
+    public FileTooManyException() {
+        super(Code.FILE_TOO_MANY.getDescription(), Code.FILE_TOO_MANY.getCode());
+    }
+
     public FileTooManyException(String message) {
         super(message);
     }
 
-    public FileTooManyException() {
-        super(Code.FILE_TOO_MANY.getDescription());
-    }
-
     public FileTooManyException(int code) {
-        super(Code.FILE_TOO_MANY.getDescription());
+        super(Code.FILE_TOO_MANY.getDescription(), code);
         this.code = code;
     }
 
 
     public FileTooManyException(String message, int code) {
-        super(message);
+        super(message, code);
         this.code = code;
     }
 }

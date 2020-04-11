@@ -15,21 +15,23 @@ public class ForbiddenException extends HttpException {
     @Getter
     protected int httpCode = HttpStatus.FORBIDDEN.value();
 
+
+    public ForbiddenException() {
+        super(Code.FORBIDDEN.getDescription(), Code.FORBIDDEN.getCode());
+    }
+
+    public ForbiddenException(String message, int code) {
+        super(message, code);
+        this.code = code;
+    }
+
     public ForbiddenException(String message) {
         super(message);
     }
 
-    public ForbiddenException(String message, int code) {
-        super(message);
-        this.code = code;
-    }
-
     public ForbiddenException(int code) {
-        super(Code.FORBIDDEN.getDescription());
+        super(Code.FORBIDDEN.getDescription(), code);
         this.code = code;
     }
 
-    public ForbiddenException() {
-        super(Code.FORBIDDEN.getDescription());
-    }
 }
