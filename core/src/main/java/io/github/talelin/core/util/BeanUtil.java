@@ -7,6 +7,8 @@ import java.lang.reflect.Method;
 
 /**
  * Bean 工具函数
+ *
+ * @author pedro@TaleLin
  */
 public class BeanUtil {
 

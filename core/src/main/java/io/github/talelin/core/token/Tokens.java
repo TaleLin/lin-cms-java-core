@@ -5,6 +5,8 @@ import lombok.Getter;
 
 /**
  * 令牌数据
+ *
+ * @author pedro@TaleLin
  */
 @AllArgsConstructor
 public class Tokens {

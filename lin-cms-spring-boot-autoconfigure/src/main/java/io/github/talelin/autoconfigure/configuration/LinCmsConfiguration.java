@@ -13,6 +13,8 @@ import org.springframework.core.annotation.Order;
 
 /**
  * lin cms 配置类
+ *
+ * @author pedro@TaleLin
  */
 @Configuration(proxyBeanMethods = false)
 @Order(Ordered.HIGHEST_PRECEDENCE)

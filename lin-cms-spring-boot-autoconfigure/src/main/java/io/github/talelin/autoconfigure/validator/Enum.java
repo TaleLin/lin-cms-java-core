@@ -8,6 +8,8 @@ import java.lang.annotation.*;
 
 /**
  * 校验枚举，传入的值必须为target(枚举类)中的一项
+ *
+ * @author pedro@TaleLin
  */
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)

@@ -20,6 +20,8 @@ import java.util.Map;
 /**
  * 自定义日志记录 Appender
  * @param <E> 时间
+ *
+ * @author pedro@TaleLin
  */
 public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
 

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
  * 含异常信息 message
  * http状态码 httpCode
  * 错误码 code
+ *
+ * @author pedro@TaleLin
  */
 public class HttpException extends RuntimeException implements BaseResponse {
 

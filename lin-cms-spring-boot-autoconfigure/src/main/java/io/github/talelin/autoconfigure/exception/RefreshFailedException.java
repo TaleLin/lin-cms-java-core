@@ -5,7 +5,9 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * 刷新令牌失败
+ * 刷新令牌失败异常
+ *
+ * @author pedro@TaleLin
  */
 public class RefreshFailedException extends HttpException {
 

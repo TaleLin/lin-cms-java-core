@@ -6,6 +6,8 @@ import java.lang.annotation.*;
 
 /**
  * 表示需要权限
+ *
+ * @author pedro@TaleLin
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 行为日志记录
+ *
+ * @author pedro@TaleLin
  */
 public interface LoggerResolver {
 

@@ -14,6 +14,8 @@ import java.util.Map;
 /**
  * 单令牌模式
  * single token
+ *
+ * @author pedro@TaleLin
  */
 public class SingleJWT {
 

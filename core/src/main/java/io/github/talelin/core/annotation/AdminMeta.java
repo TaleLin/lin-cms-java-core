@@ -6,6 +6,8 @@ import java.lang.annotation.*;
 
 /**
  * AdminRequired 和 RouteMeta 融合注解
+ *
+ * @author pedro@TaleLin
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

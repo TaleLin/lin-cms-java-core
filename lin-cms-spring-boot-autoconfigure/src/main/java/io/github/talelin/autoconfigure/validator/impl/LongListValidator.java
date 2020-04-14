@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * long 列表校验器
+ *
+ * @author pedro@TaleLin
  */
 public class LongListValidator implements ConstraintValidator<LongList, List<Long>> {
 

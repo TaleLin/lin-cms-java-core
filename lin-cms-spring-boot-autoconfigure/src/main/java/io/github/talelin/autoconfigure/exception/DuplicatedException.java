@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 字段重复
+ *
+ * @author pedro@TaleLin
  */
 public class DuplicatedException extends HttpException {
 

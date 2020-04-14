@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 更新相应
+ *
  * @author colorful@TaleLin
  */
 public class Updated implements BaseResponse {

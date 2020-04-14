@@ -6,6 +6,8 @@ import com.amdelamar.jhash.exception.InvalidHashException;
 
 /**
  * 加密工具类
+ *
+ * @author pedro@TaleLin
  */
 public class EncryptUtil {
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 删除相应
+ *
  * @author colorful@TaleLin
  */
 public class Deleted implements BaseResponse {

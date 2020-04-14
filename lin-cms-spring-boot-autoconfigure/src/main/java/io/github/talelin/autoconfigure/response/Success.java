@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 成功响应
+ *
+ * @author pedro@TaleLin
  */
 public class Success implements BaseResponse {
 

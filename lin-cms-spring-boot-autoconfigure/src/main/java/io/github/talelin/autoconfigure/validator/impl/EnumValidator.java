@@ -8,6 +8,8 @@ import java.lang.reflect.Method;
 
 /**
  * 枚举校验器
+ *
+ * @author pedro@TaleLin
  */
 public class EnumValidator implements ConstraintValidator<Enum, Object> {
 

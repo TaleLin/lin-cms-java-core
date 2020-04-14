@@ -4,6 +4,8 @@ import javax.validation.Payload;
 
 /**
  * 整型列表校验，校验 List Long 类型
+ *
+ * @author pedro@TaleLin
  */
 public @interface LongList {
 

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 请求工具类
+ *
+ * @author pedro@TaleLin
  */
 public class RequestUtil {
 

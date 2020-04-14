@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 方法不允许异常
+ *
+ * @author pedro@TaleLin
  */
 public class MethodNotAllowedException extends HttpException {
 

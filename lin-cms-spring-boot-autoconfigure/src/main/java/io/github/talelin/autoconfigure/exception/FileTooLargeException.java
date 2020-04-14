@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 文件太大异常
+ *
+ * @author pedro@TaleLin
  */
 public class FileTooLargeException extends HttpException {
 

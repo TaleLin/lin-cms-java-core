@@ -3,6 +3,7 @@ package io.github.talelin.autoconfigure.bean;
 
 /**
  * 消息码
+ *
  * @author pedro@TaleLin
  * @author colorful@TaleLin
  */

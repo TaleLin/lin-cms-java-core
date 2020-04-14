@@ -5,6 +5,8 @@ import javax.validation.Payload;
 /**
  * 日期格式校验器 默认校验日期格式 yyyy-MM-dd HH:mm:ss
  * 可通过指定 format 来更改校验格式
+ *
+ * @author pedro@TaleLin
  */
 public @interface DateTimeFormat {
 

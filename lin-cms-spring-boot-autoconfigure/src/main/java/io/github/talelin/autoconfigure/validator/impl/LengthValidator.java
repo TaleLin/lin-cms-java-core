@@ -8,6 +8,8 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * 字符串长度校验器
+ *
+ * @author pedro@TaleLin
  */
 public class LengthValidator implements ConstraintValidator<Length, String> {
 

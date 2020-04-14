@@ -4,6 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * lin-cms 配置属性
+ *
+ * @author pedro@TaleLin
  */
 @SuppressWarnings("ConfigurationProperties")
 @ConfigurationProperties("lin.cms")
