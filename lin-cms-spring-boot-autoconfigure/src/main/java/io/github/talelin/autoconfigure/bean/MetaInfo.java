@@ -2,6 +2,9 @@ package io.github.talelin.autoconfigure.bean;
 
 import io.github.talelin.core.enumeration.UserLevel;
 
+/**
+ * @author pedro@TaleLin
+ */
 public class MetaInfo {
 
     private String permission;

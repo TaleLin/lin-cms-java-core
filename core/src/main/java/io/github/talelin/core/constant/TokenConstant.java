@@ -2,6 +2,8 @@ package io.github.talelin.core.constant;
 
 /**
  * 令牌相关常量
+ *
+ * @author pedro@TaleLin
  */
 public class TokenConstant {
 

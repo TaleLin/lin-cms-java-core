@@ -5,7 +5,9 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * 令牌无效
+ * 令牌无效异常
+ *
+ * @author pedro@TaleLin
  */
 public class TokenInvalidException extends HttpException {
 

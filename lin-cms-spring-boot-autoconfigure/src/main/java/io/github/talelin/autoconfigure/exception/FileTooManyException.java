@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 文件太多异常
+ *
+ * @author pedro@TaleLin
  */
 public class FileTooManyException extends HttpException {
 

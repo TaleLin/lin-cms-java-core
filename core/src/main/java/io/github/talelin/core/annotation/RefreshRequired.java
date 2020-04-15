@@ -6,6 +6,8 @@ import java.lang.annotation.*;
 
 /**
  * 刷新令牌权限
+ *
+ * @author pedro@TaleLin
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

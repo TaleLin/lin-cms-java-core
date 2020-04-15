@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 
 /**
  * 日期校验器实现
+ *
+ * @author pedro@TaleLin
  */
 public class DateTimeValidator implements ConstraintValidator<DateTimeFormat, String> {
 

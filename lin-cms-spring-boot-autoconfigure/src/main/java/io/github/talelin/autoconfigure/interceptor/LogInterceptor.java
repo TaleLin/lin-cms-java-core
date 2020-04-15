@@ -14,6 +14,8 @@ import java.lang.reflect.Method;
 
 /**
  * 行为日志拦截器
+ *
+ * @author pedro@TaleLin
  */
 public class LogInterceptor extends HandlerInterceptorAdapter {
 

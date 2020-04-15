@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 禁止操作异常
+ *
+ * @author pedro@TaleLin
  */
 public class ForbiddenException extends HttpException {
 

@@ -6,26 +6,27 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * 成功响应
+ * 更新相应
  *
- * @author pedro@TaleLin
+ * @author colorful@TaleLin
  */
-public class Success implements BaseResponse {
+public class Updated implements BaseResponse {
 
     @Getter
-    protected String message = Code.SUCCESS.getDescription();
+    protected String message = Code.UPDATED.getDescription();
 
     @Getter
-    protected int code = Code.SUCCESS.getCode();
+    protected int code = Code.UPDATED.getCode();
 
     @Getter
     protected int httpCode = HttpStatus.OK.value();
 
 
-    public Success(String message) {
+    public Updated(String message) {
         this.message = message;
     }
 
-    public Success() {
+    public Updated() {
     }
+
 }

@@ -9,6 +9,8 @@ import java.lang.reflect.Field;
 
 /**
  * 相等值校验器
+ *
+ * @author pedro@TaleLin
  */
 public class EqualFieldValidator implements ConstraintValidator<EqualField, Object> {
 

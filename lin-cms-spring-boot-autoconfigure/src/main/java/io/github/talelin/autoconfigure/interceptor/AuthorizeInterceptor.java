@@ -17,6 +17,8 @@ import java.lang.reflect.Method;
 
 /**
  * 权限拦截器
+ *
+ * @author pedro@TaleLin
  */
 public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
 

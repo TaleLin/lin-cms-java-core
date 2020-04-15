@@ -16,6 +16,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 路由信息收集器
+ *
+ * @author pedro@TaleLin
  */
 public class RouteMetaCollector implements BeanPostProcessor {
 

@@ -2,6 +2,11 @@ package io.github.talelin.core.util;
 
 import java.util.Date;
 
+/**
+ * 日期工具函数
+ *
+ * @author pedro@TaleLin
+ */
 public class DateUtil {
 
     /**

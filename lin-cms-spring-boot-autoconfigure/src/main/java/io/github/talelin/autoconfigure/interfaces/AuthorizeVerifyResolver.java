@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 权限认证接口
+ *
+ * @author pedro@TaleLin
  */
 public interface AuthorizeVerifyResolver {
 

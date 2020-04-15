@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 失败异常
+ *
+ * @author pedro@TaleLin
  */
 public class FailedException extends HttpException {
 

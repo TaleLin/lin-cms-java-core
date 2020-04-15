@@ -5,7 +5,9 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * not found
+ * 资源不存在异常
+ *
+ * @author pedro@TaleLin
  */
 public class NotFoundException extends HttpException {
 

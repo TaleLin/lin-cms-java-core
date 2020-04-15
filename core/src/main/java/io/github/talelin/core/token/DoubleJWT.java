@@ -16,6 +16,8 @@ import java.util.Map;
 /**
  * 支持双令牌模式
  * access、refresh token
+ *
+ * @author pedro@TaleLin
  */
 public class DoubleJWT {
 

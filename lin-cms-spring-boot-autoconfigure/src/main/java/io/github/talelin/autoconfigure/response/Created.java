@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 
 /**
  * 新建响应
+ *
+ * @author pedro@TaleLin
  */
 public class Created implements BaseResponse {
 

@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 参数错误
+ * 参数错误异常
+ *
+ * @author pedro@TaleLin
  */
 public class ParameterException extends HttpException {
 

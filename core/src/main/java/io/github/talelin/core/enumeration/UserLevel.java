@@ -2,6 +2,8 @@ package io.github.talelin.core.enumeration;
 
 /**
  * 用户等级
+ *
+ * @author pedro@TaleLin
  */
 public enum UserLevel {
 

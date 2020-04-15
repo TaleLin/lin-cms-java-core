@@ -5,7 +5,9 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * 请求过多
+ * 请求过多异常
+ *
+ * @author pedro@TaleLin
  */
 public class RequestLimitException extends HttpException {
 

@@ -5,7 +5,9 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * 令牌过期
+ * 令牌过期异常
+ *
+ * @author pedro@TaleLin
  */
 public class TokenExpiredException extends HttpException {
 

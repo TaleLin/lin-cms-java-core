@@ -4,6 +4,8 @@ import java.lang.annotation.*;
 
 /**
  * 路由信息
+ *
+ * @author pedro@TaleLin
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

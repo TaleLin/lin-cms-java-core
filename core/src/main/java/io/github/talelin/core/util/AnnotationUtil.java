@@ -7,6 +7,8 @@ import java.lang.annotation.Annotation;
 
 /**
  * 注解工具函数
+ *
+ * @author pedro@TaleLin
  */
 public class AnnotationUtil {
 

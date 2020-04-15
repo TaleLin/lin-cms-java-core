@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * 非空校验器
+ *
+ * @author pedro@TaleLin
  */
 public class NotEmptyFieldsValidator implements ConstraintValidator<NotEmptyFields, List<String>> {
 

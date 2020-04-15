@@ -11,6 +11,8 @@ import java.lang.annotation.Target;
 
 /**
  * 校验List String 类型
+ *
+ * @author pedro@TaleLin
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

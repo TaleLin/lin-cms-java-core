@@ -3,12 +3,19 @@ package io.github.talelin.autoconfigure.bean;
 
 /**
  * 消息码
+ *
+ * @author pedro@TaleLin
+ * @author colorful@TaleLin
  */
 public enum Code {
 
     SUCCESS(0, "OK", "成功"),
 
     CREATED(1, "Created", "创建成功"),
+
+    UPDATED(2, "Updated", "更新成功"),
+
+    DELETED(3, "Deleted", "删除成功"),
 
     FAIL(10200, "Failed", "失败"),
 
