@@ -54,4 +54,45 @@ public class ParameterExceptionTest {
         assertEquals(10030, code);
         assertEquals("{nickname=名称不能超过100字符}", message);
     }
+
+    @Test
+    public void testNoArgsConstructor() {
+        ParameterException exception = new ParameterException();
+        int code = exception.getCode();
+        boolean messageOnly = exception.isMessageOnly();
+        assertEquals(10030, code);
+        assertFalse(messageOnly);
+    }
+
+    @Test
+    public void testMessageOnlyConstructor() {
+        ParameterException exception = new ParameterException("参数错了吧");
+        String message = exception.getMessage();
+        boolean messageOnly = exception.isMessageOnly();
+        assertEquals("参数错了吧", message);
+        assertTrue(messageOnly);
+    }
+
+    @Test
+    public void testAllArgsConstructor() {
+        ParameterException exception = new ParameterException("参数错了吧", 10040);
+        int code = exception.getCode();
+        String message = exception.getMessage();
+        boolean messageOnly = exception.isMessageOnly();
+        assertEquals(10040, code);
+        assertEquals("参数错了吧", message);
+        assertFalse(messageOnly);
+    }
+
+    @Test
+    public void testCodeOnlyConstructor() {
+        ParameterException exception = new ParameterException(10040);
+        int code = exception.getCode();
+        String message = exception.getMessage();
+        boolean messageOnly = exception.isMessageOnly();
+        assertEquals(10040, code);
+        assertEquals("Parameters Error", message);
+        assertFalse(messageOnly);
+    }
+
 }
