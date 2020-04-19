@@ -11,7 +11,7 @@
 
     <groupId>io.github.talelin</groupId>
     <artifactId>lin-cms-spring-boot-starter</artifactId>
-    <version>0.0.1-RC6</version>
+    <version>0.1.0-RELEASE</version>
     <name>lin-cms-spring-boot-starter</name>
     <description>starter project for lin cms</description>
     <url>https://github.com/TaleLin/lin-cms-java-core</url>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>io.github.talelin</groupId>
             <artifactId>lin-cms-spring-boot-autoconfigure</artifactId>
-            <version>0.0.1-RC6</version>
+            <version>0.1.0-RELEASE</version>
         </dependency>
     </dependencies>
 
