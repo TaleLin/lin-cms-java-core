@@ -1,13 +1,13 @@
 <h1 align="center">
-  <a href="http://doc.cms.7yue.pro/">
-  <img src="http://doc.cms.7yue.pro/left-logo.png" width="250"/></a>
+  <a href="http://doc.cms.talelin.com/">
+  <img src="http://doc.cms.talelin.com/left-logo.png" width="250"/></a>
   <br>
   Lin-CMS-Java-Core
 </h1>
 
 <h4 align="center">
  一个简单易用的CMS后端项目 | 
-<a href="http://doc.cms.7yue.pro/" target="_blank">Lin-CMS-Java</a>
+<a href="http://doc.cms.talelin.com/" target="_blank">Lin-CMS-Java</a>
  核心部分
 </h4>
 
@@ -24,7 +24,7 @@
 
 ### 文档地址
 
-[http://doc.cms.7yue.pro/](http://doc.cms.7yue.pro/)
+[http://doc.cms.talelin.com/](http://doc.cms.talelin.com/)
 
 ## 简介
 
