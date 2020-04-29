@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
  * 权限拦截器
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
 
@@ -49,10 +50,9 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
      * @param response 相应
      * @param handler  处理器
      * @return 是否成功
-     * @throws Exception 异常
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (checkInExclude(request.getMethod())) {
             // 有些请求方法无需检测，如OPTIONS
             return true;
@@ -81,12 +81,12 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
         authorizeVerifyResolver.handlePostHandle(request, response, handler, modelAndView);
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         authorizeVerifyResolver.handleAfterCompletion(request, response, handler, ex);
     }
 

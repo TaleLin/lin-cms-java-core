@@ -1,7 +1,6 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 import java.util.HashMap;
@@ -11,13 +10,14 @@ import java.util.Map;
  * 参数错误异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class ParameterException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = 3437368397374839983L;
+
     protected int httpCode = HttpStatus.BAD_REQUEST.value();
 
-    @Getter
     protected int code = Code.PARAMETER_ERROR.getCode();
 
     private Map<String, Object> errors = new HashMap<>();
@@ -51,8 +51,19 @@ public class ParameterException extends HttpException {
 
     @Override
     public String getMessage() {
-        if (errors.isEmpty())
+        if (errors.isEmpty()) {
             return super.getMessage();
+        }
         return errors.toString();
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
     }
 }

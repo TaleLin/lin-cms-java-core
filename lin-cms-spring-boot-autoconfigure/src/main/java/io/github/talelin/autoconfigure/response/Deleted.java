@@ -2,23 +2,20 @@ package io.github.talelin.autoconfigure.response;
 
 import io.github.talelin.autoconfigure.bean.Code;
 import io.github.talelin.autoconfigure.interfaces.BaseResponse;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 删除相应
  *
  * @author colorful@TaleLin
+ * @author Juzi@TaleLin
  */
 public class Deleted implements BaseResponse {
 
-    @Getter
     protected String message = Code.UPDATED.getDescription();
 
-    @Getter
     protected int code = Code.DELETED.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.OK.value();
 
 
@@ -29,4 +26,18 @@ public class Deleted implements BaseResponse {
     public Deleted() {
     }
 
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
+    }
 }

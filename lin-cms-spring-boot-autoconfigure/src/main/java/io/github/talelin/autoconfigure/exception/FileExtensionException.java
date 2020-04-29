@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 文件扩展异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class FileExtensionException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = 7328828500425088567L;
+
     protected int code = Code.FILE_EXTENSION.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.NOT_ACCEPTABLE.value();
 
     public FileExtensionException() {
@@ -34,5 +34,15 @@ public class FileExtensionException extends HttpException {
     public FileExtensionException(String message, int code) {
         super(message, code);
         this.code = code;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
     }
 }

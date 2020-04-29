@@ -9,7 +9,7 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * 字符串长度校验器
  *
- * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class LengthValidator implements ConstraintValidator<Length, String> {
 
@@ -36,14 +36,9 @@ public class LengthValidator implements ConstraintValidator<Length, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (allowBlank) {
-            if (Strings.isBlank(value)) {
-                return true;
-            }
+            return Strings.isBlank(value);
         } else {
-            if (value.length() >= min && value.length() <= max) {
-                return true;
-            }
+            return value.length() >= min && value.length() <= max;
         }
-        return false;
     }
 }

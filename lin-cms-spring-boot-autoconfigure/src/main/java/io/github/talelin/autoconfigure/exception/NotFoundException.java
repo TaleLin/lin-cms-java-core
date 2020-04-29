@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 资源不存在异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class NotFoundException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = 3147792856922208240L;
+
     private int code = Code.NOT_FOUND.getCode();
 
-    @Getter
     private int httpCode = HttpStatus.NOT_FOUND.value();
 
     public NotFoundException() {
@@ -35,4 +35,13 @@ public class NotFoundException extends HttpException {
         this.code = code;
     }
 
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
+    }
 }

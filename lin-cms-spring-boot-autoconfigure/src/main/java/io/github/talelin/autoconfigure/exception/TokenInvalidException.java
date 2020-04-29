@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 令牌无效异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class TokenInvalidException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = -7844470320210708005L;
+
     protected int code = Code.TOKEN_INVALID.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
     public TokenInvalidException() {
@@ -33,5 +33,15 @@ public class TokenInvalidException extends HttpException {
     public TokenInvalidException(String message, int code) {
         super(message, code);
         this.code = code;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
     }
 }

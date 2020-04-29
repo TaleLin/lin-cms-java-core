@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
  * 错误码 code
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class HttpException extends RuntimeException implements BaseResponse {
 
@@ -68,23 +69,22 @@ public class HttpException extends RuntimeException implements BaseResponse {
         super(message, cause);
     }
 
+
     /**
      * for better performance
      *
      * @return Throwable
      */
-    // @Override
-    // public Throwable fillInStackTrace() {
-    //     return this;
-    // }
     public Throwable doFillInStackTrace() {
         return super.fillInStackTrace();
     }
 
+    @Override
     public int getHttpCode() {
         return this.httpCode;
     }
 
+    @Override
     public int getCode() {
         return this.code;
     }

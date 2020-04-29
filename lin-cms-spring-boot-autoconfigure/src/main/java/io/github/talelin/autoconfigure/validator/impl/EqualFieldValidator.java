@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
  * 相等值校验器
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class EqualFieldValidator implements ConstraintValidator<EqualField, Object> {
 
@@ -41,8 +42,9 @@ public class EqualFieldValidator implements ConstraintValidator<EqualField, Obje
             dstField.setAccessible(true);
             String src = (String) srcField.get(object);
             String dst = (String) dstField.get(object);
-            if (src.equals(dst))
+            if (src.equals(dst)) {
                 return true;
+            }
         } catch (Exception e) {
             return false;
         }

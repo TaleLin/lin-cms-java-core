@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 失败异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class FailedException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = -661265124636854465L;
+
     protected int code = Code.FAIL.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
 
     public FailedException() {
@@ -33,5 +33,15 @@ public class FailedException extends HttpException {
     public FailedException(String message, int code) {
         super(message, code);
         this.code = code;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
     }
 }

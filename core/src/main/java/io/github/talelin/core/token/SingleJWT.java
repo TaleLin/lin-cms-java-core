@@ -16,6 +16,7 @@ import java.util.Map;
  * single token
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class SingleJWT {
 
@@ -65,7 +66,7 @@ public class SingleJWT {
     }
 
     private void checkTokenExpired(Date expiresAt) {
-        long now = new Date().getTime();
+        long now = System.currentTimeMillis();
         if (expiresAt.getTime() < now) {
             throw new TokenExpiredException("token is expired");
         }
