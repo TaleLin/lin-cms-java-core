@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
  * Bean 工具函数
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class BeanUtil {
 
@@ -25,20 +26,19 @@ public class BeanUtil {
      */
     public static PropertyDescriptor getPropertyDescriptor(Class<?> clazz, String propertyName) {
         //根据需求，定制 自己的get和set方法
-        Method setMethod = null;
-        Method getMethod = null;
+        Method setMethod;
+        Method getMethod;
         PropertyDescriptor pd = null;
         try {
-            Field field = clazz.getDeclaredField(propertyName);// 根据字段名来获取字段
-            if (field != null) {
-                // 构建方法的后缀
-                String methodEnd = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
-                setMethod = clazz.getDeclaredMethod(SET_PREFIX + methodEnd, field.getType());
-                // 构建get 方法
-                getMethod = clazz.getDeclaredMethod(GET_PREFIX + methodEnd);
-                // 构建一个属性描述器 把对应属性 propertyName 的 get 和 set 方法保存到属性描述器中
-                pd = new PropertyDescriptor(propertyName, getMethod, setMethod);
-            }
+            // 根据字段名来获取字段
+            Field field = clazz.getDeclaredField(propertyName);
+            // 构建方法的后缀
+            String methodEnd = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+            setMethod = clazz.getDeclaredMethod(SET_PREFIX + methodEnd, field.getType());
+            // 构建get 方法
+            getMethod = clazz.getDeclaredMethod(GET_PREFIX + methodEnd);
+            // 构建一个属性描述器 把对应属性 propertyName 的 get 和 set 方法保存到属性描述器中
+            pd = new PropertyDescriptor(propertyName, getMethod, setMethod);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -71,16 +71,15 @@ public class BeanUtil {
      * @param value        属性值
      */
     public static void setProperty(Object obj, String propertyName, Object value) {
-        Class<?> clazz = obj.getClass();// 获取对象的类型
-        PropertyDescriptor pd = getPropertyDescriptor(clazz, propertyName);// 获取
-        // clazz
-        // 类型中的
-        // propertyName
-        // 的属性描述器
-        Method setMethod = pd.getWriteMethod();// 从属性描述器中获取 set 方法
+        // 获取对象的类型
+        Class<?> clazz = obj.getClass();
+        // 获取 clazz 类型中的 propertyName 的属性描述器
+        PropertyDescriptor pd = getPropertyDescriptor(clazz, propertyName);
+        // 从属性描述器中获取 set 方法
+        Method setMethod = pd.getWriteMethod();
         try {
-            setMethod.invoke(obj, value);// 调用 set
-            // 方法将传入的value值保存属性中去
+            // 调用 set 方法将传入的value值保存属性中去
+            setMethod.invoke(obj, value);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,17 +93,21 @@ public class BeanUtil {
      * @return 属性值
      */
     public static String getProperty(Object obj, String propertyName) {
-        Class<?> clazz = obj.getClass();// 获取对象的类型
-        String value = null;
+        // 获取对象的类型
+        Class<?> clazz = obj.getClass();
+        String value;
         try {
-            PropertyDescriptor pd = getPropertyDescriptor(clazz, propertyName);// 获取
-            Method getMethod = pd.getReadMethod();// 从属性描述器中获取 get 方法
+            // 获取
+            PropertyDescriptor pd = getPropertyDescriptor(clazz, propertyName);
+            // 从属性描述器中获取 get 方法
+            Method getMethod = pd.getReadMethod();
             // 调用方法获取方法的返回值
             value = getMethod.invoke(clazz).toString();
         } catch (Exception e) {
             return "";
         }
-        return value;// 返回值
+        // 返回值
+        return value;
     }
 
     /**
@@ -115,7 +118,8 @@ public class BeanUtil {
      * @return 属性值
      */
     public static String getValueByPropName(Object obj, String propName) {
-        Class<?> clazz = obj.getClass();// 获取对象的类型
+        // 获取对象的类型
+        Class<?> clazz = obj.getClass();
         String value;
         try {
             String upperCaseFirstOne = toUpperCaseFirstOne(propName);
@@ -136,9 +140,10 @@ public class BeanUtil {
      * @return 处理后字符串
      */
     public static String toUpperCaseFirstOne(String s) {
-        if (Character.isUpperCase(s.charAt(0)))
+        if (Character.isUpperCase(s.charAt(0))) {
             return s;
-        else
+        } else {
             return Character.toUpperCase(s.charAt(0)) + s.substring(1);
+        }
     }
 }

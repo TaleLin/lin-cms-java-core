@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 授权异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class AuthenticationException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = -222891683232481602L;
+
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
-    @Getter
     protected int code = Code.UN_AUTHENTICATION.getCode();
 
     public AuthenticationException() {
@@ -34,5 +34,15 @@ public class AuthenticationException extends HttpException {
     public AuthenticationException(String message, int code) {
         super(message, code);
         this.code = code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
     }
 }

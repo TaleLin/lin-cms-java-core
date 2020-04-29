@@ -4,16 +4,19 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import io.github.talelin.core.constant.TokenConstant;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-@Slf4j
 public class DoubleJWTTest {
+    
+    private static final Logger log = LoggerFactory.getLogger(DoubleJWTTest.class);
 
     @Test
     public void generateToken() {
@@ -52,7 +55,6 @@ public class DoubleJWTTest {
         assertNotNull(token);
         log.info(token);
     }
-
 
     @Test
     public void decodeAccessToken1() throws InterruptedException {
@@ -144,13 +146,13 @@ public class DoubleJWTTest {
     public void getAccessExpire() {
         Algorithm algorithm = Algorithm.HMAC256("secret");
         DoubleJWT jwt = new DoubleJWT(algorithm, 1000, 2000);
-        assertTrue(jwt.getAccessExpire() == 1000L);
+        assertEquals(1000L, (long) jwt.getAccessExpire());
     }
 
     @Test
     public void getRefreshExpire() {
         Algorithm algorithm = Algorithm.HMAC256("secret");
         DoubleJWT jwt = new DoubleJWT(algorithm, 1000, 2000);
-        assertTrue(jwt.getRefreshExpire() == 2000);
+        assertEquals(2000, (long) jwt.getRefreshExpire());
     }
 }

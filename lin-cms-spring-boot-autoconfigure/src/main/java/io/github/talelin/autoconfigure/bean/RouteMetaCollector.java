@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 路由信息收集器
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class RouteMetaCollector implements BeanPostProcessor {
 
@@ -121,9 +122,9 @@ public class RouteMetaCollector implements BeanPostProcessor {
     public MetaInfo findMetaByPermission(String permission) {
         Collection<MetaInfo> values = metaMap.values();
         MetaInfo[] objects = values.toArray(new MetaInfo[0]);
-        for (int i = 0; i < objects.length; i++) {
-            if (objects[i].getPermission().equals(permission)) {
-                return objects[i];
+        for (MetaInfo object : objects) {
+            if (object.getPermission().equals(permission)) {
+                return object;
             }
         }
         return null;

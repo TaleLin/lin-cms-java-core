@@ -3,15 +3,20 @@ package io.github.talelin.core.token;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import io.github.talelin.core.util.DateUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
 import static org.junit.Assert.*;
 
-@Slf4j
+/**
+ * @author Juzi@TaleLin
+ */
 public class SingleJWTTest {
+
+    private static final Logger log = LoggerFactory.getLogger(SingleJWTTest.class);
 
     @Test
     public void generateToken() {
@@ -76,6 +81,6 @@ public class SingleJWTTest {
     public void getExpire() {
         Algorithm algorithm = Algorithm.HMAC256("secret");
         SingleJWT jwt = new SingleJWT(algorithm, 1000);
-        assertTrue(jwt.getExpire() == 1000L);
+        assertEquals(1000L, (long) jwt.getExpire());
     }
 }

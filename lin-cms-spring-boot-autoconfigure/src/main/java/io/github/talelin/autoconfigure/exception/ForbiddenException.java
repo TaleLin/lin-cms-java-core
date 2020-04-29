@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 禁止操作异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class ForbiddenException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = 865571132800721223L;
+
     protected int code = Code.FORBIDDEN.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.FORBIDDEN.value();
 
 
@@ -36,4 +36,13 @@ public class ForbiddenException extends HttpException {
         this.code = code;
     }
 
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
+    }
 }

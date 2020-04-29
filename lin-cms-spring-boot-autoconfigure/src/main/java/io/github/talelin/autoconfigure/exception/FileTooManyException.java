@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 文件太多异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class FileTooManyException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = -3189291002817434249L;
+
     protected int code = Code.FILE_TOO_MANY.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.PAYLOAD_TOO_LARGE.value();
 
 
@@ -35,5 +35,15 @@ public class FileTooManyException extends HttpException {
     public FileTooManyException(String message, int code) {
         super(message, code);
         this.code = code;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
     }
 }

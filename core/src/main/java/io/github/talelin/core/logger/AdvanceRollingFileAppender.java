@@ -22,6 +22,7 @@ import java.util.Map;
  * @param <E> 时间
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
 
@@ -47,7 +48,10 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
 
     private String dir;
 
-    public static final long DEFAULT_MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+    /**
+     * 最大文件大小 10MB
+     */
+    public static final long DEFAULT_MAX_FILE_SIZE = 10 * 1024 * 1024;
 
     FileSize maxFileSize = new FileSize(DEFAULT_MAX_FILE_SIZE);
 
@@ -87,6 +91,7 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
      * The <b>File</b> property takes a string value which should be the name of
      * the file to append to.
      */
+    @Override
     public void setFile(String file) {
         if (file == null) {
             Date now = new Date();
@@ -102,6 +107,7 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
     /**
      * Returns the value of the <b>Append</b> property.
      */
+    @Override
     public boolean isAppend() {
         return append;
     }
@@ -112,6 +118,7 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
      * <p>
      * This method may be overridden by derived classes.
      */
+    @Override
     public String getFile() {
         return fileName;
     }
@@ -140,6 +147,7 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
      * {@link #openFile} is called with the values of <b>File</b> and
      * <b>Append</b> properties.
      */
+    @Override
     public void start() {
         if (this.dir == null) {
             addError("log dir must be not be empty. Aborting.");
@@ -167,12 +175,14 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
         super.stop();
 
         Map<String, String> map = ContextUtil.getFilenameCollisionMap(context);
-        if (map == null || getName() == null)
+        if (map == null || getName() == null) {
             return;
+        }
 
         map.remove(getName());
     }
 
+    @Override
     protected boolean checkForFileCollisionInPreviousFileAppenders() {
         boolean collisionsDetected = false;
         if (fileName == null) {
@@ -195,6 +205,7 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
         return collisionsDetected;
     }
 
+    @Override
     protected void addErrorForCollision(String optionName, String optionValue, String appenderName) {
         addError("'" + optionName + "' option has the same value \"" + optionValue + "\" as that given for appender [" + appenderName + "] defined earlier.");
     }
@@ -212,12 +223,13 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
      * <b>Do not use this method directly. To configure a FileAppender or one of
      * its subclasses, set its properties one by one and then call start().</b>
      *
-     * @param file_name The path to the log file.
+     * @param fileName The path to the log file.
      */
-    public void openFile(String file_name) throws IOException {
+    @Override
+    public void openFile(String fileName) throws IOException {
         lock.lock();
         try {
-            File file = new File(file_name);
+            File file = new File(fileName);
             boolean result = FileUtil.createMissingParentDirectories(file);
             if (!result) {
                 addError("Failed to create parent directories for [" + file.getAbsolutePath() + "]");
@@ -235,6 +247,7 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
      * @return true if in prudent mode
      * @see #setPrudent(boolean)
      */
+    @Override
     public boolean isPrudent() {
         return prudent;
     }
@@ -245,22 +258,25 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
      *
      * @param prudent
      */
+    @Override
     public void setPrudent(boolean prudent) {
         this.prudent = prudent;
     }
 
+    @Override
     public void setAppend(boolean append) {
         this.append = append;
     }
 
+    @Override
     public void setBufferSize(FileSize bufferSize) {
         addInfo("Setting bufferSize to [" + bufferSize.toString() + "]");
         this.bufferSize = bufferSize;
     }
 
     private void safeWrite(E event) throws IOException {
-        ResilientFileOutputStream resilientFOS = (ResilientFileOutputStream) getOutputStream();
-        FileChannel fileChannel = resilientFOS.getChannel();
+        ResilientFileOutputStream resilientFileOutputStream = (ResilientFileOutputStream) getOutputStream();
+        FileChannel fileChannel = resilientFileOutputStream.getChannel();
         if (fileChannel == null) {
             return;
         }
@@ -279,7 +295,7 @@ public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
             super.writeOut(event);
         } catch (IOException e) {
             // Mainly to catch FileLockInterruptionExceptions (see LOGBACK-875)
-            resilientFOS.postIOFailure(e);
+            resilientFileOutputStream.postIOFailure(e);
         } finally {
             if (fileLock != null && fileLock.isValid()) {
                 fileLock.release();

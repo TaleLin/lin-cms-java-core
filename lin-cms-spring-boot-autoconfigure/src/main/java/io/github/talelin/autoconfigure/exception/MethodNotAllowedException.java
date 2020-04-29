@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 方法不允许异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class MethodNotAllowedException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = 1223018751542741014L;
+
     protected int code = Code.METHOD_NOT_ALLOWED.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.METHOD_NOT_ALLOWED.value();
 
     public MethodNotAllowedException() {
@@ -33,5 +33,15 @@ public class MethodNotAllowedException extends HttpException {
     public MethodNotAllowedException(String message, int code) {
         super(message, code);
         this.code = code;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
     }
 }

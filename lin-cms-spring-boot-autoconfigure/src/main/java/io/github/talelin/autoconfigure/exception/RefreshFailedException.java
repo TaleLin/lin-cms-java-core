@@ -1,20 +1,20 @@
 package io.github.talelin.autoconfigure.exception;
 
 import io.github.talelin.autoconfigure.bean.Code;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 刷新令牌失败异常
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class RefreshFailedException extends HttpException {
 
-    @Getter
+    private static final long serialVersionUID = -8626126405157905110L;
+
     protected int code = Code.REFRESH_FAILED.getCode();
 
-    @Getter
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
     public RefreshFailedException() {
@@ -33,5 +33,15 @@ public class RefreshFailedException extends HttpException {
     public RefreshFailedException(String message, int code) {
         super(message, code);
         this.code = code;
+    }
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public int getHttpCode() {
+        return httpCode;
     }
 }

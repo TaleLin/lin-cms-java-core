@@ -10,10 +10,14 @@ import java.lang.reflect.Method;
  * 枚举校验器
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class EnumValidator implements ConstraintValidator<Enum, Object> {
 
-    private Class<?> cls; //枚举类
+    /**
+     * 枚举类
+     */
+    private Class<?> cls;
 
     private boolean allowNull;
 
