@@ -1,14 +1,12 @@
 package io.github.talelin.autoconfigure.bean;
 
-import io.github.talelin.core.annotation.AdminMeta;
-import io.github.talelin.core.annotation.GroupMeta;
-import io.github.talelin.core.annotation.LoginMeta;
-import io.github.talelin.core.annotation.RouteMeta;
+import io.github.talelin.core.annotation.*;
 import io.github.talelin.core.enumeration.UserLevel;
 import io.github.talelin.core.util.AnnotationUtil;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -19,14 +17,15 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
-public class RouteMetaCollector implements BeanPostProcessor {
+public class PermissionMetaCollector implements BeanPostProcessor {
 
     private Map<String, MetaInfo> metaMap = new ConcurrentHashMap<>();
 
     private Map<String, Map<String, Set<String>>> structuralMeta = new ConcurrentHashMap<>();
 
-    public RouteMetaCollector() {
+    public PermissionMetaCollector() {
     }
 
     @Override
@@ -47,30 +46,46 @@ public class RouteMetaCollector implements BeanPostProcessor {
         for (Method method : methods) {
             AdminMeta adminMeta = AnnotationUtils.findAnnotation(method, AdminMeta.class);
             if (adminMeta != null && adminMeta.mount()) {
-                putOneMetaInfo(method, adminMeta.permission(), adminMeta.module(), UserLevel.ADMIN);
+                String permission = StringUtils.isEmpty(adminMeta.value())
+                        ? adminMeta.permission() : adminMeta.permission();
+                putOneMetaInfo(method, permission, adminMeta.module(), UserLevel.ADMIN);
                 continue;
             }
             GroupMeta groupMeta = AnnotationUtils.findAnnotation(method, GroupMeta.class);
             if (groupMeta != null && groupMeta.mount()) {
-                putOneMetaInfo(method, groupMeta.permission(), groupMeta.module(), UserLevel.GROUP);
+                String permission = StringUtils.isEmpty(groupMeta.value())
+                        ? groupMeta.permission() : groupMeta.permission();
+                putOneMetaInfo(method, permission, groupMeta.module(), UserLevel.GROUP);
                 continue;
             }
             LoginMeta loginMeta = AnnotationUtils.findAnnotation(method, LoginMeta.class);
             if (loginMeta != null && loginMeta.mount()) {
-                putOneMetaInfo(method, loginMeta.permission(), loginMeta.module(), UserLevel.LOGIN);
+                String permission = StringUtils.isEmpty(loginMeta.value())
+                        ? loginMeta.permission() : loginMeta.permission();
+                putOneMetaInfo(method, permission, loginMeta.module(), UserLevel.LOGIN);
                 continue;
             }
-            // 最后寻找 RouteMeta
-            RouteMeta routeMeta = AnnotationUtils.findAnnotation(method, RouteMeta.class);
-            if (routeMeta != null && routeMeta.mount()) {
+            // 最后寻找 PermissionMeta
+            PermissionMeta permissionMeta = AnnotationUtils.findAnnotation(method, PermissionMeta.class);
+            if (permissionMeta != null && permissionMeta.mount()) {
+                String permission = StringUtils.isEmpty(permissionMeta.value())
+                        ? permissionMeta.permission() : permissionMeta.permission();
                 UserLevel level = AnnotationUtil.findRequired(method.getAnnotations());
-                putOneMetaInfo(method, routeMeta.permission(), routeMeta.module(), level);
+                putOneMetaInfo(method, permission, permissionMeta.module(), level);
             }
         }
         return bean;
     }
 
     private void putOneMetaInfo(Method method, String permission, String module, UserLevel userLevel) {
+        if (StringUtils.isEmpty(module)) {
+            PermissionModule permissionModule = AnnotationUtils.findAnnotation(
+                    method.getDeclaringClass(), PermissionModule.class);
+            if (permissionModule != null) {
+                module = StringUtils.isEmpty(permissionModule.value()) ?
+                        method.getDeclaringClass().getName() : permissionModule.value();
+            }
+        }
         String methodName = method.getName();
         String className = method.getDeclaringClass().getName();
         String identity = className + "#" + methodName;

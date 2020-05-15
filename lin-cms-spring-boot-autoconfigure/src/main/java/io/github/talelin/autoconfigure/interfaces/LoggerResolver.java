@@ -1,7 +1,7 @@
 package io.github.talelin.autoconfigure.interfaces;
 
 import io.github.talelin.core.annotation.Logger;
-import io.github.talelin.core.annotation.RouteMeta;
+import io.github.talelin.core.annotation.PermissionMeta;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,5 +21,5 @@ public interface LoggerResolver {
      * @param request  请求
      * @param response 响应
      */
-    void handle(RouteMeta meta, Logger logger, HttpServletRequest request, HttpServletResponse response);
+    void handle(PermissionMeta meta, Logger logger, HttpServletRequest request, HttpServletResponse response);
 }
