@@ -15,10 +15,11 @@ public @interface PermissionMeta {
 
     String value() default "";
 
+    @Deprecated
     String permission() default "";
 
     String module() default "";
 
-    boolean mount() default false;
+    boolean mount() default true;
 
 }

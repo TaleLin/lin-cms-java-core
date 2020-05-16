@@ -14,5 +14,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Required(level = UserLevel.LOGIN)
+@Deprecated
 public @interface LoginRequired {
 }

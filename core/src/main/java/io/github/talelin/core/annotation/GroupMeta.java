@@ -14,6 +14,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Required(level = UserLevel.GROUP)
+@Deprecated
 public @interface GroupMeta {
 
     String value() default "";

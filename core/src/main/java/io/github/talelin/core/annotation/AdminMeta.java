@@ -14,6 +14,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Required(level = UserLevel.ADMIN)
+@Deprecated
 public @interface AdminMeta {
 
     String value() default "";
