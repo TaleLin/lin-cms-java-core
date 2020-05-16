@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface PermissionMeta {
 
-    String value() default "";
+    String value();
 
     @Deprecated
     String permission() default "";
