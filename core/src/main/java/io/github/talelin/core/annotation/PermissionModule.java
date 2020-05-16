@@ -14,6 +14,5 @@ public @interface PermissionModule {
 
     String value() default "";
 
-    boolean mount() default true;
 
 }
