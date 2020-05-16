@@ -2,7 +2,7 @@ package io.github.talelin.autoconfigure.interceptor;
 
 import io.github.talelin.autoconfigure.interfaces.LoggerResolver;
 import io.github.talelin.core.annotation.Logger;
-import io.github.talelin.core.annotation.RouteMeta;
+import io.github.talelin.core.annotation.PermissionMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +39,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
             Method method = handlerMethod.getMethod();
             Logger logger = method.getAnnotation(Logger.class);
             if (logger != null) {
-                RouteMeta meta = method.getAnnotation(RouteMeta.class);
+                PermissionMeta meta = method.getAnnotation(PermissionMeta.class);
                 // parse template and extract properties from request,response and modelAndView
                 loggerResolver.handle(meta, logger, request, response);
             }

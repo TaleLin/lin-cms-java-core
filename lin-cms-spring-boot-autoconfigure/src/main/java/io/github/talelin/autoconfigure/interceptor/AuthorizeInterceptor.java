@@ -1,7 +1,7 @@
 package io.github.talelin.autoconfigure.interceptor;
 
 import io.github.talelin.autoconfigure.bean.MetaInfo;
-import io.github.talelin.autoconfigure.bean.RouteMetaCollector;
+import io.github.talelin.autoconfigure.bean.PermissionMetaCollector;
 import io.github.talelin.autoconfigure.interfaces.AuthorizeVerifyResolver;
 import io.github.talelin.core.enumeration.UserLevel;
 import io.github.talelin.core.util.AnnotationUtil;
@@ -27,7 +27,7 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
     private AuthorizeVerifyResolver authorizeVerifyResolver;
 
     @Autowired
-    private RouteMetaCollector routeMetaCollector;
+    private PermissionMetaCollector permissionMetaCollector;
 
     private String[] excludeMethods = new String[]{"OPTIONS"};
 
@@ -63,9 +63,9 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
             String methodName = method.getName();
             String className = method.getDeclaringClass().getName();
             String identity = className + "#" + methodName;
-            MetaInfo meta = routeMetaCollector.findMeta(identity);
+            MetaInfo meta = permissionMetaCollector.findMeta(identity);
             // AdminMeta adminMeta = method.getAnnotation(AdminMeta.class);
-            // RouteMeta meta = method.getAnnotation(RouteMeta.class);
+            // PermissionMeta meta = method.getAnnotation(PermissionMeta.class);
             // 考虑两种情况，1. 有 meta；2. 无 meta
             if (meta == null) {
                 // 无meta的话，adminRequired和loginRequired
