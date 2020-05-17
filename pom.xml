@@ -6,7 +6,7 @@
 
     <groupId>io.github.talelin</groupId>
     <artifactId>cms</artifactId>
-    <version>0.1.1-RC2</version>
+    <version>0.1.1-RC3</version>
 
     <modules>
         <module>core</module>
