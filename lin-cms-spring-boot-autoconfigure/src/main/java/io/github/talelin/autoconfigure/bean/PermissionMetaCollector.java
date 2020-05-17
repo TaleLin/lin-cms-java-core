@@ -47,21 +47,21 @@ public class PermissionMetaCollector implements BeanPostProcessor {
             AdminMeta adminMeta = AnnotationUtils.findAnnotation(method, AdminMeta.class);
             if (adminMeta != null && adminMeta.mount()) {
                 String permission = StringUtils.isEmpty(adminMeta.value())
-                        ? adminMeta.permission() : adminMeta.permission();
+                        ? adminMeta.permission() : adminMeta.value();
                 putOneMetaInfo(method, permission, adminMeta.module(), UserLevel.ADMIN);
                 continue;
             }
             GroupMeta groupMeta = AnnotationUtils.findAnnotation(method, GroupMeta.class);
             if (groupMeta != null && groupMeta.mount()) {
                 String permission = StringUtils.isEmpty(groupMeta.value())
-                        ? groupMeta.permission() : groupMeta.permission();
+                        ? groupMeta.permission() : groupMeta.value();
                 putOneMetaInfo(method, permission, groupMeta.module(), UserLevel.GROUP);
                 continue;
             }
             LoginMeta loginMeta = AnnotationUtils.findAnnotation(method, LoginMeta.class);
             if (loginMeta != null && loginMeta.mount()) {
                 String permission = StringUtils.isEmpty(loginMeta.value())
-                        ? loginMeta.permission() : loginMeta.permission();
+                        ? loginMeta.permission() : loginMeta.value();
                 putOneMetaInfo(method, permission, loginMeta.module(), UserLevel.LOGIN);
                 continue;
             }
@@ -69,7 +69,7 @@ public class PermissionMetaCollector implements BeanPostProcessor {
             PermissionMeta permissionMeta = AnnotationUtils.findAnnotation(method, PermissionMeta.class);
             if (permissionMeta != null && permissionMeta.mount()) {
                 String permission = StringUtils.isEmpty(permissionMeta.value())
-                        ? permissionMeta.permission() : permissionMeta.permission();
+                        ? permissionMeta.permission() : permissionMeta.value();
                 UserLevel level = AnnotationUtil.findRequired(method.getAnnotations());
                 putOneMetaInfo(method, permission, permissionMeta.module(), level);
             }
