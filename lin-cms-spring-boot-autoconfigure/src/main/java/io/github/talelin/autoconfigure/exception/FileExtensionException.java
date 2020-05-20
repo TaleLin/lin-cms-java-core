@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class FileExtensionException extends HttpException {
 
@@ -18,7 +19,7 @@ public class FileExtensionException extends HttpException {
     protected int httpCode = HttpStatus.NOT_ACCEPTABLE.value();
 
     public FileExtensionException() {
-        super(Code.FILE_EXTENSION.getDescription(), Code.FILE_EXTENSION.getCode());
+        super(Code.FILE_EXTENSION.getCode(), Code.FILE_EXTENSION.getDescription());
     }
 
     public FileExtensionException(String message) {
@@ -27,12 +28,18 @@ public class FileExtensionException extends HttpException {
 
 
     public FileExtensionException(int code) {
-        super(Code.FILE_EXTENSION.getDescription(), code);
+        super(code, Code.FILE_EXTENSION.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public FileExtensionException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public FileExtensionException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

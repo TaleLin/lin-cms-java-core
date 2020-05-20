@@ -11,6 +11,7 @@ import java.util.Map;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class ParameterException extends HttpException {
 
@@ -30,13 +31,19 @@ public class ParameterException extends HttpException {
         super(message);
     }
 
+    public ParameterException(int code) {
+        super(code, Code.PARAMETER_ERROR.getDescription());
+        this.code = code;
+    }
+
+    @Deprecated
     public ParameterException(String message, int code) {
         super(message, code);
         this.code = code;
     }
 
-    public ParameterException(int code) {
-        super(Code.PARAMETER_ERROR.getDescription(), code);
+    public ParameterException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

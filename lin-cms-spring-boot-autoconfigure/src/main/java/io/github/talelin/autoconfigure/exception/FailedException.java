@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class FailedException extends HttpException {
 
@@ -18,7 +19,7 @@ public class FailedException extends HttpException {
     protected int httpCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
 
     public FailedException() {
-        super(Code.FAIL.getDescription(), Code.FAIL.getCode());
+        super(Code.FAIL.getCode(), Code.FAIL.getDescription());
     }
 
     public FailedException(String message) {
@@ -26,12 +27,18 @@ public class FailedException extends HttpException {
     }
 
     public FailedException(int code) {
-        super(Code.FAIL.getDescription(), code);
+        super(code, Code.FAIL.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public FailedException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public FailedException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

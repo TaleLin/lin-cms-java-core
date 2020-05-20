@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class RequestLimitException extends HttpException {
 
@@ -18,7 +19,7 @@ public class RequestLimitException extends HttpException {
     protected int httpCode = HttpStatus.TOO_MANY_REQUESTS.value();
 
     public RequestLimitException() {
-        super(Code.REQUEST_LIMIT.getDescription(), Code.REQUEST_LIMIT.getCode());
+        super(Code.REQUEST_LIMIT.getCode(), Code.REQUEST_LIMIT.getDescription());
     }
 
     public RequestLimitException(String message) {
@@ -26,12 +27,18 @@ public class RequestLimitException extends HttpException {
     }
 
     public RequestLimitException(int code) {
-        super(Code.REQUEST_LIMIT.getDescription());
+        super(code, Code.REQUEST_LIMIT.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public RequestLimitException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public RequestLimitException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

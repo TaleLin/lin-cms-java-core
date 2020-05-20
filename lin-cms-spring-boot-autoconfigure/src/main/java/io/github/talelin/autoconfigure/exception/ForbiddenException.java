@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class ForbiddenException extends HttpException {
 
@@ -19,11 +20,22 @@ public class ForbiddenException extends HttpException {
 
 
     public ForbiddenException() {
-        super(Code.FORBIDDEN.getDescription(), Code.FORBIDDEN.getCode());
+        super(Code.FORBIDDEN.getCode(), Code.FORBIDDEN.getDescription());
     }
 
+    public ForbiddenException(int code) {
+        super(code, Code.FORBIDDEN.getDescription());
+        this.code = code;
+    }
+
+    @Deprecated
     public ForbiddenException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public ForbiddenException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 
@@ -31,10 +43,6 @@ public class ForbiddenException extends HttpException {
         super(message);
     }
 
-    public ForbiddenException(int code) {
-        super(Code.FORBIDDEN.getDescription(), code);
-        this.code = code;
-    }
 
     @Override
     public int getCode() {

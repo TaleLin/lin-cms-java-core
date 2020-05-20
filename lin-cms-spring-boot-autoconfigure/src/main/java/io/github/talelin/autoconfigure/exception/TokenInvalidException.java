@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class TokenInvalidException extends HttpException {
 
@@ -18,7 +19,7 @@ public class TokenInvalidException extends HttpException {
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
     public TokenInvalidException() {
-        super(Code.TOKEN_INVALID.getDescription(), Code.TOKEN_INVALID.getCode());
+        super(Code.TOKEN_INVALID.getCode(), Code.TOKEN_INVALID.getDescription());
     }
 
     public TokenInvalidException(String message) {
@@ -26,12 +27,18 @@ public class TokenInvalidException extends HttpException {
     }
 
     public TokenInvalidException(int code) {
-        super(Code.TOKEN_INVALID.getDescription(), code);
+        super(code, Code.TOKEN_INVALID.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public TokenInvalidException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public TokenInvalidException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

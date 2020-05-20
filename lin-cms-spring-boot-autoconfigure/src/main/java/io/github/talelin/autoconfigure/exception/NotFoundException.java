@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class NotFoundException extends HttpException {
 
@@ -18,20 +19,26 @@ public class NotFoundException extends HttpException {
     private int httpCode = HttpStatus.NOT_FOUND.value();
 
     public NotFoundException() {
-        super(Code.NOT_FOUND.getDescription(), Code.NOT_FOUND.getCode());
+        super(Code.NOT_FOUND.getCode(), Code.NOT_FOUND.getDescription());
     }
 
     public NotFoundException(String message) {
         super(message);
     }
 
+    public NotFoundException(int code) {
+        super(code, Code.NOT_FOUND.getDescription());
+        this.code = code;
+    }
+
+    @Deprecated
     public NotFoundException(String message, int code) {
         super(message, code);
         this.code = code;
     }
 
-    public NotFoundException(int code) {
-        super(Code.NOT_FOUND.getDescription(), code);
+    public NotFoundException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 
