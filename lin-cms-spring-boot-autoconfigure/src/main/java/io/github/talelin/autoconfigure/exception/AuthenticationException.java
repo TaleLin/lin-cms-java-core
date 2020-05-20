@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class AuthenticationException extends HttpException {
 
@@ -18,7 +19,7 @@ public class AuthenticationException extends HttpException {
     protected int code = Code.UN_AUTHENTICATION.getCode();
 
     public AuthenticationException() {
-        super(Code.UN_AUTHENTICATION.getDescription(), Code.UN_AUTHENTICATION.getCode());
+        super(Code.UN_AUTHENTICATION.getCode(), Code.UN_AUTHENTICATION.getDescription());
     }
 
     public AuthenticationException(String message) {
@@ -31,7 +32,13 @@ public class AuthenticationException extends HttpException {
     }
 
 
+    @Deprecated
     public AuthenticationException(String message, int code) {
+        super(code, message);
+        this.code = code;
+    }
+
+    public AuthenticationException(int code, String message) {
         super(message, code);
         this.code = code;
     }

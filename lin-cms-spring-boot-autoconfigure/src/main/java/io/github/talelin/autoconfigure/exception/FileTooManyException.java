@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class FileTooManyException extends HttpException {
 
@@ -19,7 +20,7 @@ public class FileTooManyException extends HttpException {
 
 
     public FileTooManyException() {
-        super(Code.FILE_TOO_MANY.getDescription(), Code.FILE_TOO_MANY.getCode());
+        super(Code.FILE_TOO_MANY.getCode(), Code.FILE_TOO_MANY.getDescription());
     }
 
     public FileTooManyException(String message) {
@@ -27,13 +28,19 @@ public class FileTooManyException extends HttpException {
     }
 
     public FileTooManyException(int code) {
-        super(Code.FILE_TOO_MANY.getDescription(), code);
+        super(code, Code.FILE_TOO_MANY.getDescription());
         this.code = code;
     }
 
 
+    @Deprecated
     public FileTooManyException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public FileTooManyException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

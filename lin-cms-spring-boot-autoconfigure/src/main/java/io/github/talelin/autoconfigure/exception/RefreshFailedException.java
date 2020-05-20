@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class RefreshFailedException extends HttpException {
 
@@ -18,7 +19,7 @@ public class RefreshFailedException extends HttpException {
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
     public RefreshFailedException() {
-        super(Code.REFRESH_FAILED.getDescription(), Code.REFRESH_FAILED.getCode());
+        super(Code.REFRESH_FAILED.getCode(), Code.REFRESH_FAILED.getDescription());
     }
 
     public RefreshFailedException(String message) {
@@ -26,12 +27,18 @@ public class RefreshFailedException extends HttpException {
     }
 
     public RefreshFailedException(int code) {
-        super(Code.REFRESH_FAILED.getDescription(), code);
+        super(code, Code.REFRESH_FAILED.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public RefreshFailedException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public RefreshFailedException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class TokenExpiredException extends HttpException {
 
@@ -18,7 +19,7 @@ public class TokenExpiredException extends HttpException {
     protected int httpCode = HttpStatus.UNAUTHORIZED.value();
 
     public TokenExpiredException() {
-        super(Code.TOKEN_EXPIRED.getDescription(), Code.TOKEN_EXPIRED.getCode());
+        super(Code.TOKEN_EXPIRED.getCode(), Code.TOKEN_EXPIRED.getDescription());
     }
 
     public TokenExpiredException(String message) {
@@ -26,12 +27,18 @@ public class TokenExpiredException extends HttpException {
     }
 
     public TokenExpiredException(int code) {
-        super(Code.TOKEN_EXPIRED.getDescription(), code);
+        super(code, Code.TOKEN_EXPIRED.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public TokenExpiredException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public TokenExpiredException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

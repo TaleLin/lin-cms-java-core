@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class MethodNotAllowedException extends HttpException {
 
@@ -18,7 +19,7 @@ public class MethodNotAllowedException extends HttpException {
     protected int httpCode = HttpStatus.METHOD_NOT_ALLOWED.value();
 
     public MethodNotAllowedException() {
-        super(Code.METHOD_NOT_ALLOWED.getDescription(), Code.METHOD_NOT_ALLOWED.getCode());
+        super(Code.METHOD_NOT_ALLOWED.getCode(), Code.METHOD_NOT_ALLOWED.getDescription());
     }
 
     public MethodNotAllowedException(String message) {
@@ -26,12 +27,18 @@ public class MethodNotAllowedException extends HttpException {
     }
 
     public MethodNotAllowedException(int code) {
-        super(Code.METHOD_NOT_ALLOWED.getDescription(), code);
+        super(code, Code.METHOD_NOT_ALLOWED.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public MethodNotAllowedException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public MethodNotAllowedException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

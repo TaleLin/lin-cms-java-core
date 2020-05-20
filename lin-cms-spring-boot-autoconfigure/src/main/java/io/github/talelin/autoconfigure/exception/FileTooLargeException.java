@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class FileTooLargeException extends HttpException {
 
@@ -18,7 +19,7 @@ public class FileTooLargeException extends HttpException {
     protected int httpCode = HttpStatus.PAYLOAD_TOO_LARGE.value();
 
     public FileTooLargeException() {
-        super(Code.FILE_TOO_LARGE.getDescription(), Code.FILE_TOO_LARGE.getCode());
+        super(Code.FILE_TOO_LARGE.getCode(), Code.FILE_TOO_LARGE.getDescription());
     }
 
     public FileTooLargeException(String message) {
@@ -26,12 +27,18 @@ public class FileTooLargeException extends HttpException {
     }
 
     public FileTooLargeException(int code) {
-        super(Code.FILE_TOO_LARGE.getDescription(), code);
+        super(code, Code.FILE_TOO_LARGE.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public FileTooLargeException(String message, int code) {
         super(message, code);
+        this.code = code;
+    }
+
+    public FileTooLargeException(int code, String message) {
+        super(code, message);
         this.code = code;
     }
 

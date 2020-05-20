@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class DuplicatedException extends HttpException {
 
@@ -22,16 +23,23 @@ public class DuplicatedException extends HttpException {
     }
 
     public DuplicatedException() {
-        super(Code.DUPLICATED.getDescription());
+        super(Code.DUPLICATED.getCode(), Code.DUPLICATED.getDescription());
     }
 
     public DuplicatedException(int code) {
-        super(Code.DUPLICATED.getDescription(), Code.DUPLICATED.getCode());
+        super(Code.DUPLICATED.getCode(), Code.DUPLICATED.getDescription());
         this.code = code;
     }
 
+    @Deprecated
     public DuplicatedException(String message, int code) {
         super(message, Code.DUPLICATED.getCode());
+        this.code = code;
+    }
+
+
+    public DuplicatedException(int code, String message) {
+        super(Code.DUPLICATED.getCode(), message);
         this.code = code;
     }
 

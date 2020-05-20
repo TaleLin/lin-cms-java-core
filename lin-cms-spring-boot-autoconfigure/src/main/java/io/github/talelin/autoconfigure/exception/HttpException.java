@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
+ * @author colorful@TaleLin
  */
 public class HttpException extends RuntimeException implements BaseResponse {
 
@@ -43,15 +44,28 @@ public class HttpException extends RuntimeException implements BaseResponse {
         this.code = code;
     }
 
+    @Deprecated
     public HttpException(String message, int code) {
         super(message);
         this.code = code;
     }
 
+    @Deprecated
     public HttpException(String message, int code, int httpCode) {
         super(message);
         this.httpCode = httpCode;
         this.code = code;
+    }
+
+    public HttpException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public HttpException(int code, String message, int httpCode) {
+        super(message);
+        this.code = code;
+        this.httpCode = httpCode;
     }
 
     public HttpException(Throwable cause, int code) {
