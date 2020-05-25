@@ -1,6 +1,8 @@
 package io.github.talelin.autoconfigure.validator.impl;
 
-import io.github.talelin.autoconfigure.validator.Enum;
+import io.github.talelin.autoconfigure.validator.EnumValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -12,20 +14,18 @@ import java.lang.reflect.Method;
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
  */
-public class EnumValidator implements ConstraintValidator<Enum, Object> {
+public class EnumValueValidator implements ConstraintValidator<EnumValue, Object> {
+
+    private static final Logger log = LoggerFactory.getLogger(EnumValueValidator.class);
 
     /**
      * 枚举类
      */
     private Class<?> cls;
 
-    private boolean allowNull;
-
-
     @Override
-    public void initialize(Enum constraintAnnotation) {
+    public void initialize(EnumValue constraintAnnotation) {
         cls = constraintAnnotation.target();
-        allowNull = constraintAnnotation.allowNull();
     }
 
     /**
@@ -37,24 +37,22 @@ public class EnumValidator implements ConstraintValidator<Enum, Object> {
      */
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        if (value == null && allowNull) {
+        if (value == null) {
             return true;
         }
-        if (cls.isEnum()) {
+
+        try {
             Object[] objs = cls.getEnumConstants();
-            try {
-                Method method = cls.getMethod("getValue");
-                for (Object obj : objs) {
-                    Object val = method.invoke(obj);
-                    if (val.equals(value)) {
-                        return true;
-                    }
+            Method method = cls.getMethod("getValue");
+            for (Object obj : objs) {
+                Object val = method.invoke(obj);
+                if (val.equals(value)) {
+                    return true;
                 }
-                return false;
-            } catch (Exception e) {
-                return false;
             }
-        } else {
+            return false;
+        } catch (Exception e) {
+            log.warn("EnumValue 校验异常", e);
             return false;
         }
     }

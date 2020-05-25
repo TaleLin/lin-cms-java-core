@@ -8,23 +8,30 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * 字段相等
+ * 比较两个属性是否相等
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
-@Target({TYPE, METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})
-@Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = {EqualFieldValidator.class})
+@Target(TYPE)
+@Retention(RUNTIME)
+@Constraint(validatedBy = EqualFieldValidator.class)
 public @interface EqualField {
 
-    String srcField() default "";
+    /**
+     * 源属性
+     */
+    String srcField();
 
-    String dstField() default "";
+    /**
+     * 目标属性
+     */
+    String dstField();
 
     String message() default "the two fields must be equal";
 

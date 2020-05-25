@@ -1,13 +1,11 @@
 package io.github.talelin.autoconfigure.validator;
 
-import io.github.talelin.autoconfigure.validator.impl.DateTimeFormatValidator;
+import io.github.talelin.autoconfigure.validator.impl.EnumValueValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.FIELD;
@@ -16,22 +14,24 @@ import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * 日期格式校验器
- * 对 String 类型进行校验，是否匹配给定的模式
- * 默认校验日期格式 yyyy-MM-dd HH:mm:ss
+ * 枚举校验
+ * 校验的值必须为 target (枚举类)中的一项
  *
  * @author pedro@TaleLin
- * @author Juzi@TaleLin
+ * @author jUZI@TaleLin
  */
 @Documented
 @Retention(RUNTIME)
 @Target({FIELD, TYPE_USE, TYPE_PARAMETER})
-@Constraint(validatedBy = DateTimeFormatValidator.class)
-public @interface DateTimeFormat {
+@Constraint(validatedBy = EnumValueValidator.class)
+public @interface EnumValue {
 
-    String message() default "date pattern invalid";
+    /**
+     * 目标值，必须是一个枚举类
+     */
+    Class<? extends Enum<?>> target();
 
-    String pattern() default "yyyy-MM-dd HH:mm:ss";
+    String message() default "value must in enum";
 
     Class<?>[] groups() default {};
 
