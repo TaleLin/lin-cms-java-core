@@ -1,15 +1,25 @@
 package io.github.talelin.autoconfigure.bean;
 
-import io.github.talelin.core.annotation.*;
+import io.github.talelin.core.annotation.AdminMeta;
+import io.github.talelin.core.annotation.GroupMeta;
+import io.github.talelin.core.annotation.LoginMeta;
+import io.github.talelin.core.annotation.PermissionMeta;
+import io.github.talelin.core.annotation.PermissionModule;
 import io.github.talelin.core.enumeration.UserLevel;
 import io.github.talelin.core.util.AnnotationUtil;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -42,6 +52,14 @@ public class PermissionMetaCollector implements BeanPostProcessor {
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {
+        Controller controllerAnnotation = bean.getClass().getAnnotation(Controller.class);
+        RestController restControllerAnnotation =
+                bean.getClass().getAnnotation(RestController.class);
+        // 非 Controller 类，无需检查权限信息
+        if (controllerAnnotation == null && restControllerAnnotation == null) {
+            return bean;
+        }
+
         Method[] methods = ReflectionUtils.getAllDeclaredMethods(bean.getClass());
         for (Method method : methods) {
             AdminMeta adminMeta = AnnotationUtils.findAnnotation(method, AdminMeta.class);
@@ -66,7 +84,8 @@ public class PermissionMetaCollector implements BeanPostProcessor {
                 continue;
             }
             // 最后寻找 PermissionMeta
-            PermissionMeta permissionMeta = AnnotationUtils.findAnnotation(method, PermissionMeta.class);
+            PermissionMeta permissionMeta = AnnotationUtils.findAnnotation(method,
+                    PermissionMeta.class);
             if (permissionMeta != null && permissionMeta.mount()) {
                 String permission = StringUtils.isEmpty(permissionMeta.value())
                         ? permissionMeta.permission() : permissionMeta.value();
@@ -77,7 +96,8 @@ public class PermissionMetaCollector implements BeanPostProcessor {
         return bean;
     }
 
-    private void putOneMetaInfo(Method method, String permission, String module, UserLevel userLevel) {
+    private void putOneMetaInfo(Method method, String permission, String module,
+                                UserLevel userLevel) {
         if (StringUtils.isEmpty(module)) {
             PermissionModule permissionModule = AnnotationUtils.findAnnotation(
                     method.getDeclaringClass(), PermissionModule.class);
@@ -111,7 +131,8 @@ public class PermissionMetaCollector implements BeanPostProcessor {
         }
     }
 
-    private void putIntoModuleMap(Map<String, Set<String>> moduleMap, String identity, String auth) {
+    private void putIntoModuleMap(Map<String, Set<String>> moduleMap, String identity,
+                                  String auth) {
         if (moduleMap.containsKey(auth)) {
             moduleMap.get(auth).add(identity);
         } else {
