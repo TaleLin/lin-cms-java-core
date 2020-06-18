@@ -21,6 +21,7 @@ public class FileTooManyException extends HttpException {
 
     public FileTooManyException() {
         super(Code.FILE_TOO_MANY.getCode(), Code.FILE_TOO_MANY.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public FileTooManyException(String message) {
@@ -30,6 +31,7 @@ public class FileTooManyException extends HttpException {
     public FileTooManyException(int code) {
         super(code, Code.FILE_TOO_MANY.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
 

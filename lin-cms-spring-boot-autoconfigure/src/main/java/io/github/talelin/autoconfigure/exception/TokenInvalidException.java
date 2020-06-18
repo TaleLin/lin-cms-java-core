@@ -20,6 +20,7 @@ public class TokenInvalidException extends HttpException {
 
     public TokenInvalidException() {
         super(Code.TOKEN_INVALID.getCode(), Code.TOKEN_INVALID.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public TokenInvalidException(String message) {
@@ -29,6 +30,7 @@ public class TokenInvalidException extends HttpException {
     public TokenInvalidException(int code) {
         super(code, Code.TOKEN_INVALID.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

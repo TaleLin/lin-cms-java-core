@@ -22,7 +22,14 @@ public class HttpException extends RuntimeException implements BaseResponse {
 
     protected int code = Code.INTERNAL_SERVER_ERROR.getCode();
 
-    protected boolean messageOnly = false;
+    /**
+     * 是否是默认消息
+     * true： 没有通过构造函数传入 message
+     * false：通过构造函数传入了 message
+     *
+     * 没有用 isDefaultMessage 是因为和部分 rpc 框架存在兼容问题
+     */
+    protected boolean ifDefaultMessage = true;
 
     public HttpException() {
         super(Code.INTERNAL_SERVER_ERROR.getDescription());
@@ -30,7 +37,7 @@ public class HttpException extends RuntimeException implements BaseResponse {
 
     public HttpException(String message) {
         super(message);
-        this.messageOnly = true;
+        this.ifDefaultMessage = false;
     }
 
     public HttpException(int code) {
@@ -48,6 +55,7 @@ public class HttpException extends RuntimeException implements BaseResponse {
     public HttpException(String message, int code) {
         super(message);
         this.code = code;
+        this.ifDefaultMessage = false;
     }
 
     @Deprecated
@@ -55,17 +63,20 @@ public class HttpException extends RuntimeException implements BaseResponse {
         super(message);
         this.httpCode = httpCode;
         this.code = code;
+        this.ifDefaultMessage = false;
     }
 
     public HttpException(int code, String message) {
         super(message);
         this.code = code;
+        this.ifDefaultMessage = false;
     }
 
     public HttpException(int code, String message, int httpCode) {
         super(message);
         this.code = code;
         this.httpCode = httpCode;
+        this.ifDefaultMessage = false;
     }
 
     public HttpException(Throwable cause, int code) {
@@ -81,6 +92,7 @@ public class HttpException extends RuntimeException implements BaseResponse {
 
     public HttpException(String message, Throwable cause) {
         super(message, cause);
+        this.ifDefaultMessage = false;
     }
 
 
@@ -103,8 +115,8 @@ public class HttpException extends RuntimeException implements BaseResponse {
         return this.code;
     }
 
-    public boolean isMessageOnly() {
-        return messageOnly;
+    public boolean ifDefaultMessage() {
+        return this.ifDefaultMessage;
     }
 
 }

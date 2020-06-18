@@ -20,6 +20,7 @@ public class TokenExpiredException extends HttpException {
 
     public TokenExpiredException() {
         super(Code.TOKEN_EXPIRED.getCode(), Code.TOKEN_EXPIRED.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public TokenExpiredException(String message) {
@@ -29,6 +30,7 @@ public class TokenExpiredException extends HttpException {
     public TokenExpiredException(int code) {
         super(code, Code.TOKEN_EXPIRED.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

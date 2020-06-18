@@ -20,6 +20,7 @@ public class AuthenticationException extends HttpException {
 
     public AuthenticationException() {
         super(Code.UN_AUTHENTICATION.getCode(), Code.UN_AUTHENTICATION.getDescription());
+        super.ifDefaultMessage = true;
     }
 
     public AuthenticationException(String message) {
@@ -27,10 +28,10 @@ public class AuthenticationException extends HttpException {
     }
 
     public AuthenticationException(int code) {
-        super(Code.UN_AUTHENTICATION.getDescription(), code);
+        super(code, Code.UN_AUTHENTICATION.getDescription());
         this.code = code;
+        super.ifDefaultMessage = true;
     }
-
 
     @Deprecated
     public AuthenticationException(String message, int code) {
@@ -39,7 +40,7 @@ public class AuthenticationException extends HttpException {
     }
 
     public AuthenticationException(int code, String message) {
-        super(message, code);
+        super(code, message);
         this.code = code;
     }
 

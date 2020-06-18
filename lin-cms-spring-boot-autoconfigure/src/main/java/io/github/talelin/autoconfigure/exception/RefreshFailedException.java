@@ -1,5 +1,6 @@
 package io.github.talelin.autoconfigure.exception;
 
+
 import io.github.talelin.autoconfigure.bean.Code;
 import org.springframework.http.HttpStatus;
 
@@ -20,6 +21,7 @@ public class RefreshFailedException extends HttpException {
 
     public RefreshFailedException() {
         super(Code.REFRESH_FAILED.getCode(), Code.REFRESH_FAILED.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public RefreshFailedException(String message) {
@@ -29,6 +31,7 @@ public class RefreshFailedException extends HttpException {
     public RefreshFailedException(int code) {
         super(code, Code.REFRESH_FAILED.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

@@ -20,6 +20,7 @@ public class FileTooLargeException extends HttpException {
 
     public FileTooLargeException() {
         super(Code.FILE_TOO_LARGE.getCode(), Code.FILE_TOO_LARGE.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public FileTooLargeException(String message) {
@@ -29,6 +30,7 @@ public class FileTooLargeException extends HttpException {
     public FileTooLargeException(int code) {
         super(code, Code.FILE_TOO_LARGE.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

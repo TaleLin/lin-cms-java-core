@@ -20,6 +20,7 @@ public class MethodNotAllowedException extends HttpException {
 
     public MethodNotAllowedException() {
         super(Code.METHOD_NOT_ALLOWED.getCode(), Code.METHOD_NOT_ALLOWED.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public MethodNotAllowedException(String message) {
@@ -29,6 +30,7 @@ public class MethodNotAllowedException extends HttpException {
     public MethodNotAllowedException(int code) {
         super(code, Code.METHOD_NOT_ALLOWED.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

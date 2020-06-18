@@ -64,18 +64,18 @@ public class ParameterExceptionTest {
     public void testNoArgsConstructor() {
         ParameterException exception = new ParameterException();
         int code = exception.getCode();
-        boolean messageOnly = exception.isMessageOnly();
+        boolean ifDefaultMessage = exception.ifDefaultMessage();
         assertEquals(10030, code);
-        assertFalse(messageOnly);
+        assertTrue(ifDefaultMessage);
     }
 
     @Test
     public void testMessageOnlyConstructor() {
         ParameterException exception = new ParameterException("参数错了吧");
         String message = exception.getMessage();
-        boolean messageOnly = exception.isMessageOnly();
+        boolean ifDefaultMessage = exception.ifDefaultMessage();
         assertEquals("参数错了吧", message);
-        assertTrue(messageOnly);
+        assertFalse(ifDefaultMessage);
     }
 
     @Test
@@ -83,10 +83,10 @@ public class ParameterExceptionTest {
         ParameterException exception = new ParameterException("参数错了吧", 10040);
         int code = exception.getCode();
         String message = exception.getMessage();
-        boolean messageOnly = exception.isMessageOnly();
+        boolean ifDefaultMessage = exception.ifDefaultMessage();
         assertEquals(10040, code);
         assertEquals("参数错了吧", message);
-        assertFalse(messageOnly);
+        assertFalse(ifDefaultMessage);
     }
 
     @Test
@@ -94,10 +94,10 @@ public class ParameterExceptionTest {
         ParameterException exception = new ParameterException(10040);
         int code = exception.getCode();
         String message = exception.getMessage();
-        boolean messageOnly = exception.isMessageOnly();
+        boolean ifDefaultMessage = exception.ifDefaultMessage();
         assertEquals(10040, code);
         assertEquals("Parameters Error", message);
-        assertFalse(messageOnly);
+        assertTrue(ifDefaultMessage);
     }
 
 }
