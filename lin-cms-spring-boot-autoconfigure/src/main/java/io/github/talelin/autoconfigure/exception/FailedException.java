@@ -20,6 +20,7 @@ public class FailedException extends HttpException {
 
     public FailedException() {
         super(Code.FAIL.getCode(), Code.FAIL.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public FailedException(String message) {
@@ -29,6 +30,7 @@ public class FailedException extends HttpException {
     public FailedException(int code) {
         super(code, Code.FAIL.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

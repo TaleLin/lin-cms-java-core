@@ -20,6 +20,7 @@ public class FileExtensionException extends HttpException {
 
     public FileExtensionException() {
         super(Code.FILE_EXTENSION.getCode(), Code.FILE_EXTENSION.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public FileExtensionException(String message) {
@@ -30,6 +31,7 @@ public class FileExtensionException extends HttpException {
     public FileExtensionException(int code) {
         super(code, Code.FILE_EXTENSION.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

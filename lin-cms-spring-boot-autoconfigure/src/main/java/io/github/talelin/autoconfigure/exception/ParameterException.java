@@ -24,7 +24,8 @@ public class ParameterException extends HttpException {
     private Map<String, Object> errors = new HashMap<>();
 
     public ParameterException() {
-        super(Code.PARAMETER_ERROR.getDescription(), Code.PARAMETER_ERROR.getCode());
+        super(Code.PARAMETER_ERROR.getCode(), Code.PARAMETER_ERROR.getDescription());
+        super.ifDefaultMessage = true;
     }
 
     public ParameterException(String message) {
@@ -34,6 +35,7 @@ public class ParameterException extends HttpException {
     public ParameterException(int code) {
         super(code, Code.PARAMETER_ERROR.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

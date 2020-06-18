@@ -21,11 +21,13 @@ public class ForbiddenException extends HttpException {
 
     public ForbiddenException() {
         super(Code.FORBIDDEN.getCode(), Code.FORBIDDEN.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public ForbiddenException(int code) {
         super(code, Code.FORBIDDEN.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated
@@ -42,7 +44,6 @@ public class ForbiddenException extends HttpException {
     public ForbiddenException(String message) {
         super(message);
     }
-
 
     @Override
     public int getCode() {

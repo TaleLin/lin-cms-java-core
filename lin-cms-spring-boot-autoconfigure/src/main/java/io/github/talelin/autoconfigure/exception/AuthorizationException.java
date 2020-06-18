@@ -21,6 +21,7 @@ public class AuthorizationException extends HttpException {
 
     public AuthorizationException() {
         super(Code.UN_AUTHORIZATION.getCode(), Code.UN_AUTHORIZATION.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public AuthorizationException(String message) {
@@ -30,6 +31,7 @@ public class AuthorizationException extends HttpException {
     public AuthorizationException(int code) {
         super(code, Code.UN_AUTHORIZATION.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

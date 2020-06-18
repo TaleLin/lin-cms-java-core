@@ -20,6 +20,7 @@ public class NotFoundException extends HttpException {
 
     public NotFoundException() {
         super(Code.NOT_FOUND.getCode(), Code.NOT_FOUND.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public NotFoundException(String message) {
@@ -29,6 +30,7 @@ public class NotFoundException extends HttpException {
     public NotFoundException(int code) {
         super(code, Code.NOT_FOUND.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated

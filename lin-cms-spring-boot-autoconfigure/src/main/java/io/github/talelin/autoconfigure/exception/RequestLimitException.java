@@ -20,6 +20,7 @@ public class RequestLimitException extends HttpException {
 
     public RequestLimitException() {
         super(Code.REQUEST_LIMIT.getCode(), Code.REQUEST_LIMIT.getDescription());
+        super.ifDefaultMessage=true;
     }
 
     public RequestLimitException(String message) {
@@ -29,6 +30,7 @@ public class RequestLimitException extends HttpException {
     public RequestLimitException(int code) {
         super(code, Code.REQUEST_LIMIT.getDescription());
         this.code = code;
+        super.ifDefaultMessage=true;
     }
 
     @Deprecated
