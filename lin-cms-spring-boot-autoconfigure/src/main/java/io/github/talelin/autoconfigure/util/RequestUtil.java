@@ -54,7 +54,7 @@ public class RequestUtil {
      * @return 简略信息
      */
     public static String getSimpleRequest(HttpServletRequest request) {
-        return String.format("%s %s", request.getMethod(), request.getServletPath());
+        return request.getMethod() + " " + request.getServletPath();
     }
 
     /**
@@ -67,6 +67,6 @@ public class RequestUtil {
         if (request == null) {
             return null;
         }
-        return String.format("%s %s", request.getMethod(), request.getServletPath());
+        return request.getMethod() + " " + request.getServletPath();
     }
 }
