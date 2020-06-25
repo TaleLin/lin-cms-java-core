@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * 权限认证接口
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public interface AuthorizeVerifyResolver {
 
@@ -68,7 +69,7 @@ public interface AuthorizeVerifyResolver {
      * 后置处理
      *
      * @param request      请求
-     * @param response     相应
+     * @param response     响应
      * @param handler      处理器
      * @param modelAndView 视图
      */
@@ -79,7 +80,7 @@ public interface AuthorizeVerifyResolver {
      * 相应完成后处理
      *
      * @param request  请求
-     * @param response 相应
+     * @param response 响应
      * @param handler  处理器
      * @param ex       异常
      */
