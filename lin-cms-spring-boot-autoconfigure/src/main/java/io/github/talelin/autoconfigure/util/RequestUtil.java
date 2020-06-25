@@ -1,5 +1,6 @@
 package io.github.talelin.autoconfigure.util;
 
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -9,16 +10,28 @@ import javax.servlet.http.HttpServletRequest;
  * 请求工具类
  *
  * @author pedro@TaleLin
+ * @author Juzi@TaleLin
  */
 public class RequestUtil {
 
     /**
      * 获得当前请求
      *
-     * @return 请求
+     * @return Request 对象，如果没有绑定会返回 null
      */
     public static HttpServletRequest getRequest() {
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        // 当前线程没有绑定 Request
+        if (requestAttributes == null) {
+            return null;
+        }
+
+        if (requestAttributes instanceof ServletRequestAttributes) {
+            ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) requestAttributes;
+            return servletRequestAttributes.getRequest();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -27,7 +40,11 @@ public class RequestUtil {
      * @return url
      */
     public static String getRequestUrl() {
-        return getRequest().getServletPath();
+        HttpServletRequest request = RequestUtil.getRequest();
+        if (request == null) {
+            return null;
+        }
+        return request.getServletPath();
     }
 
     /**
@@ -47,6 +64,9 @@ public class RequestUtil {
      */
     public static String getSimpleRequest() {
         HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        }
         return String.format("%s %s", request.getMethod(), request.getServletPath());
     }
 }
