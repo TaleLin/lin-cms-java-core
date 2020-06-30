@@ -24,6 +24,7 @@ import java.util.Map;
  * @author pedro@TaleLin
  * @author Juzi@TaleLin
  */
+@Deprecated
 public class AdvanceRollingFileAppender<E> extends FileAppender<E> {
 
     File currentlyActiveFile;
