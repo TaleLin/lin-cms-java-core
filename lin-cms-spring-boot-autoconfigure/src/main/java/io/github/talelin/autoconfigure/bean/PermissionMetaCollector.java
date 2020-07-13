@@ -52,11 +52,9 @@ public class PermissionMetaCollector implements BeanPostProcessor {
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {
-        Controller controllerAnnotation = bean.getClass().getAnnotation(Controller.class);
-        RestController restControllerAnnotation =
-                bean.getClass().getAnnotation(RestController.class);
+        Controller controllerAnnotation = AnnotationUtils.findAnnotation(bean.getClass(), Controller.class);
         // 非 Controller 类，无需检查权限信息
-        if (controllerAnnotation == null && restControllerAnnotation == null) {
+        if (controllerAnnotation == null) {
             return bean;
         }
 
