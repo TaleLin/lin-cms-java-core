@@ -6,7 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 日期校验器实现
@@ -46,9 +47,9 @@ public class DateTimeFormatValidator implements ConstraintValidator<DateTimeForm
             return false;
         }
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         try {
-            simpleDateFormat.parse(value);
+            LocalDate.parse(value, formatter);
             return true;
         } catch (Exception e) {
             log.warn("DateTimeFormat 校验异常", e);

@@ -47,4 +47,17 @@ class DateTimeFormatValidatorTest {
                 Validation.buildDefaultValidatorFactory().getValidator().validate(testData);
         assertNotEquals(0, validate.size());
     }
+
+    /**
+     * 测试校验不通过(不正确的日期: 2020/05/35)
+     */
+    @Test
+    public void testIsValidFalseWithInValidDate() {
+        TestData testData = new TestData();
+        testData.datetime = "2020-05-35 19:37:48";
+
+        Set<ConstraintViolation<TestData>> validate =
+                Validation.buildDefaultValidatorFactory().getValidator().validate(testData);
+        assertNotEquals(0, validate.size());
+    }
 }
