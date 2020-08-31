@@ -71,6 +71,21 @@ public class DoubleJWTTest {
     }
 
     @Test
+    public void decodeAccessToken2() throws InterruptedException {
+        DoubleJWT jwt = new DoubleJWT("secret", 1000, 2000);
+        String token = jwt.generateAccessToken("Colorful");
+        assertNotNull(token);
+        log.info(token);
+        Thread.sleep(1000);
+        try {
+            Map<String, Claim> claimMap = jwt.decodeAccessToken(token);
+            System.out.println(claimMap);
+        } catch (JWTVerificationException e) {
+            assertEquals("token is expired", e.getMessage());
+        }
+    }
+
+    @Test
     public void decodeRefreshToken1() throws InterruptedException {
         DoubleJWT jwt = new DoubleJWT("secret", 1000, 2000);
         String token = jwt.generateRefreshToken(1);
@@ -106,9 +121,30 @@ public class DoubleJWTTest {
     }
 
     @Test
+    public void generateRefreshToken1() {
+        DoubleJWT jwt = new DoubleJWT("secret", 1000, 2000);
+        String token = jwt.generateRefreshToken("Colorful");
+        assertNotNull(token);
+        log.info(token);
+    }
+
+    @Test
     public void generateTokens() {
         DoubleJWT jwt = new DoubleJWT("secret", 10000, 20000);
         Tokens tokens = jwt.generateTokens(1);
+        assertNotNull(tokens.getAccessToken());
+        assertNotNull(tokens.getRefreshToken());
+        log.info("{}", tokens);
+
+        Map<String, Claim> claimMap = jwt.decodeAccessToken(tokens.getAccessToken());
+        Assert.assertEquals(TokenConstant.LIN_SCOPE, claimMap.get("scope").asString());
+        Assert.assertEquals(TokenConstant.ACCESS_TYPE, claimMap.get("type").asString());
+    }
+
+    @Test
+    public void generateTokens1() {
+        DoubleJWT jwt = new DoubleJWT("secret", 10000, 20000);
+        Tokens tokens = jwt.generateTokens("Colorful");
         assertNotNull(tokens.getAccessToken());
         assertNotNull(tokens.getRefreshToken());
         log.info("{}", tokens);

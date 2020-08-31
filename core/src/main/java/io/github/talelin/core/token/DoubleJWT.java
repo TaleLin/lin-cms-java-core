@@ -18,6 +18,7 @@ import java.util.Map;
  * access、refresh token
  *
  * @author pedro@TaleLin
+ * @author colorful@TaleLin
  */
 public class DoubleJWT {
 
@@ -72,6 +73,16 @@ public class DoubleJWT {
                 .sign(algorithm);
     }
 
+    public String generateToken(String tokenType, String identity, String scope, long expire) {
+        Date expireDate = DateUtil.getDurationDate(expire);
+        return builder
+                .withClaim("type", tokenType)
+                .withClaim("identity", identity)
+                .withClaim("scope", scope)
+                .withExpiresAt(expireDate)
+                .sign(algorithm);
+    }
+
     public Map<String, Claim> decodeAccessToken(String token) {
         DecodedJWT jwt = accessVerifier.verify(token);
         checkTokenExpired(jwt.getExpiresAt());
@@ -111,11 +122,25 @@ public class DoubleJWT {
         return generateToken(TokenConstant.ACCESS_TYPE, identity, TokenConstant.LIN_SCOPE, this.accessExpire);
     }
 
+    public String generateAccessToken(String identity) {
+        return generateToken(TokenConstant.ACCESS_TYPE, identity, TokenConstant.LIN_SCOPE, this.accessExpire);
+    }
+
     public String generateRefreshToken(long identity) {
         return generateToken(TokenConstant.REFRESH_TYPE, identity, TokenConstant.LIN_SCOPE, this.refreshExpire);
     }
 
+    public String generateRefreshToken(String identity) {
+        return generateToken(TokenConstant.REFRESH_TYPE, identity, TokenConstant.LIN_SCOPE, this.refreshExpire);
+    }
+
     public Tokens generateTokens(long identity) {
+        String access = this.generateToken(TokenConstant.ACCESS_TYPE, identity, TokenConstant.LIN_SCOPE, this.accessExpire);
+        String refresh = this.generateToken(TokenConstant.REFRESH_TYPE, identity, TokenConstant.LIN_SCOPE, this.refreshExpire);
+        return new Tokens(access, refresh);
+    }
+
+    public Tokens generateTokens(String identity) {
         String access = this.generateToken(TokenConstant.ACCESS_TYPE, identity, TokenConstant.LIN_SCOPE, this.accessExpire);
         String refresh = this.generateToken(TokenConstant.REFRESH_TYPE, identity, TokenConstant.LIN_SCOPE, this.refreshExpire);
         return new Tokens(access, refresh);
